@@ -10,20 +10,20 @@ When /^add scenario is clicked$/ do
   click_link "Add Scenario"
 end
 
-When /^"([^\"]*)" is typed as the feature name$/ do |arg1|
-  pending
+When /^"([^\"]*)" is typed as the feature name$/ do |feature_name|
+  fill_in "feature_name", :with => feature_name
 end
 
-When /^"([^\"]*)" is typed as the scenario name$/ do |arg1|
-  pending
+When /^"([^\"]*)" is typed as the scenario name$/ do |scenario_name|
+  fill_in "scenario_name", :with => scenario_name
 end
 
-When /^the scenario body is typed as$/ do |string|
-  pending
+When /^the scenario body is typed as$/ do |scenario_body|
+  fill_in "scenario_body", :with => scenario_body
 end
 
 When /^create scenario is clicked$/ do
-  pending
+  click_link "Create Scenario"
 end
 
 Then /^the feature list should contain a feature named "([^\"]*)"$/ do |arg1|
