@@ -38,13 +38,20 @@ Then /^the feature list should contain a feature named "([^\"]*)"$/ do |feature_
   response_body.should have_selector "div#features" do |feature_div|
     feature_div.should have_selector "h3", :content => "Features:"
     feature_div.should have_selector "div#feature_list" do |feature_list_div|
-      feature_list_div.should have_selector "a", :content => feature_name
+      feature_list_div.should have_selector "h4", :content => feature_name
     end 
   end
 end
 
 Then /^the feature "([^\"]*)" should have a scenario named "([^\"]*)" with body$/ do |feature_name, scenario_name, scenario_body|
-  pending
+  response_body.should have_selector "div#features" do |feature_div|
+    feature_div.should have_selector "h3", :content => "Features:"
+    feature_div.should have_selector "div#feature_list" do |feature_list_div|
+      feature_list_div.should have_selector "h4", :content => feature_name
+      feature_list_div.should have_selector "h5", :content => scenario_name
+      feature_list_div.should have_selector "div.scenario_body", :content => scenario_body
+    end 
+  end
 end
 
 When /^cancel is clicked$/ do

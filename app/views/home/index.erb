@@ -23,8 +23,14 @@
 <div id="features">
   <h3>Features:</h3>
   <div id="feature_list">
-    <% for feature in Feature.all %>
-      <a href="#"><%= feature.name %></a>
+    <% for feature in Feature.all do %>
+      <h4><%= feature.name %></h4>
+      <% for scenario in feature.scenarios do %>
+        <h5><%= scenario.name %></h5>
+        <div class="scenario_body">
+          <%= scenario.body %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>
