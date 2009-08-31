@@ -1,10 +1,30 @@
 <a href="#">Add Scenario</a>
 
 <div id="create_scenario">
-  <form>
-    <input id="feature_name" type="text"></input>
-    <input id="scenario_name" type="text"></input>
-    <input id="scenario_body" type="text"></input>
-    <a href="#">Create Scenario</a>
-  </form>
+  <% form_tag :controller => :scenarios, :action => :create do %>
+    <fieldset>
+      <p>
+        <label for="feature_name">Feature Name:</label><br/>
+        <%= text_field_tag :feature_name %>
+      </p>
+      <p>
+        <label for="scenario_name">Scenario Name:</label><br/>
+        <%= text_field_tag :scenario_name %>
+      </p>
+      <p>
+        <label for="scenario_body">Body:</label><br/>
+        <%= text_area_tag :scenario_body %>
+      </p>
+      <%= submit_tag "Create Scenario" %>
+    </fieldset>
+  <% end %>
+</div>
+
+<div id="features">
+  <h3>Features:</h3>
+  <div id="feature_list">
+    <% for feature in Feature.all %>
+      <a href="#"><%= feature.name %></a>
+    <% end %>
+  </div>
 </div>

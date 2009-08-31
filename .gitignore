@@ -2,3 +2,4 @@ db/development.sqlite3
 db/test.sqlite3
 log/cucumber.log
 log/development.log
+log/test.log
