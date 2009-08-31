@@ -43,11 +43,11 @@ Feature: Scenarios
       """
     And create scenario is clicked
     Then the feature list should contain a feature named "calculator"
-    And the feature "calculator" should contain a scenario named "add" with body
+    And the feature "calculator" should have a scenario named "add" with body
       """
       When + is clicked
       """
-    And the feature "calculator" should contain a scenario named "subtract" with body
+    And the feature "calculator" should have a scenario named "subtract" with body
       """
       When - is clicked
       """

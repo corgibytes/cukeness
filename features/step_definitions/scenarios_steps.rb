@@ -67,15 +67,14 @@ Then /^the feature list should be empty$/ do
   end
 end
 
-Given /^the feature list contains a feature named "([^\"]*)"$/ do |arg1|
-  pending
+Given /^the feature list contains a feature named "([^\"]*)"$/ do |feature_name|
+  feature = Feature.create :name => feature_name
+  feature.save
 end
 
-Given /^the feature "([^\"]*)" contains a scenario named "([^\"]*)" with body$/ do |arg1, arg2, string|
-  pending
+Given /^the feature "([^\"]*)" contains a scenario named "([^\"]*)" with body$/ do |feature_name, scenario_name, scenario_body|
+  feature = Feature.find(:first, :conditions => "name = '#{feature_name}'")
+  scenario = Scenario.create :name => scenario_name, :body => scenario_body
+  scenario.feature = feature
+  scenario.save
 end
-
-Then /^the feature "([^\"]*)" should contain a scenario named "([^\"]*)" with body$/ do |arg1, arg2, string|
-  pending
-end
-
