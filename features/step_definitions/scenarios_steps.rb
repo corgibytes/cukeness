@@ -55,11 +55,16 @@ Then /^the feature "([^\"]*)" should have a scenario named "([^\"]*)" with body$
 end
 
 When /^cancel is clicked$/ do
-  pending
+  within "#create_scenario" do 
+    click_button "Cancel"
+  end
 end
 
 Then /^the feature list should be empty$/ do
-  pending
+  response_body.should have_selector "div#features" do |feature_div|
+    feature_div.should have_selector "h3", :content => "Features:"
+    feature_div.should have_selector "div#feature_list", :content => ""
+  end
 end
 
 Given /^the feature list contains a feature named "([^\"]*)"$/ do |arg1|
