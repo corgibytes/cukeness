@@ -78,3 +78,42 @@ Given /^the feature "([^\"]*)" contains a scenario named "([^\"]*)" with body$/ 
   scenario.feature = feature
   scenario.save
 end
+
+When /^run scenarios is clicked$/ do
+  pending
+end
+
+Then /^mark the step "([^\"]*)" as undefined$/ do |arg1|
+  pending
+end
+
+Given /^glue exists for the step "([^\"]*)" that invokes pending$/ do |arg1|
+  pending
+end
+
+Then /^mark the step "([^\"]*)" as pending$/ do |arg1|
+  pending
+end
+
+Given /^glue exists for the step "([^\"]*)"$/ do |arg1|
+  pending
+end
+
+Then /^mark the step "([^\"]*)" as passed$/ do |arg1|
+  pending
+end
+
+Given /^glue exists for the step "([^\"]*)" that fails$/ do |arg1|
+  pending
+end
+
+Then /^mark the step "([^\"]*)" as failed$/ do |arg1|
+  pending
+end
+
+Then /^display the failure message below the step "([^\"]*)"$/ do |arg1|
+  pending
+end
+
+
+
