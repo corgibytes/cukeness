@@ -51,3 +51,47 @@ Feature: Scenarios
       """
       When - is clicked
       """
+      
+    Scenario: Run undefined step
+      Given home is displayed
+      And the feature list contains a feature named "Calculator"
+      And the feature "Calculator" contains a scenario named "Add" with body
+        """
+        When + is clicked
+        """
+      When run scenarios is clicked
+      Then mark the step "When + is clicked" as undefined
+      
+    Scenario: Run pending step
+      Given home is displayed
+      And the feature list contains a feature named "Calculator"
+      And the feature "Calculator" contains a scenario named "Add" with body
+        """
+        When + is clicked
+        """
+      And glue exists for the step "When + is clicked" that invokes pending
+      When run scenarios is clicked
+      Then mark the step "When + is clicked" as pending
+      
+    Scenario: Run a passing step
+      Given home is displayed
+      And the feature list contains a feature named "Calculator"
+      And the feature "Calculator" contains a scenario named "Add" with body
+        """
+        When + is clicked
+        """
+      And glue exists for the step "When + is clicked"
+      When run scenarios is clicked
+      Then mark the step "When + is clicked" as passed
+      
+    Scenario: Run a failing step
+      Given home is displayed
+      And the feature list contains a feature named "Calculator"
+      And the feature "Calculator" contains a scenario named "Add" with body
+        """
+        When + is clicked
+        """
+      And glue exists for the step "When + is clicked" that fails
+      When run scenarios is clicked
+      Then mark the step "When + is clicked" as failed
+      And display the failure message below the step "When + is clicked"
