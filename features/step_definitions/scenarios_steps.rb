@@ -1,70 +1,75 @@
+Before do
+  [Scenario, Feature].each do |model|
+    model.delete_all
+  end
+end
+
 Given /^home is displayed$/ do
-  visit "/"
+  $browser.goto @host + "/"
 end
 
 Given /^the feature list is empty$/ do
-  Feature.destroy_all
+  Feature.find(:all).empty?.should be_true
+  Scenario.find(:all).empty?.should be_true
 end
 
 When /^add scenario is clicked$/ do
-  click_link "Add Scenario"
+  $browser.link(:text, "Add Scenario").click
 end
 
 When /^"([^\"]*)" is typed as the feature name$/ do |feature_name|
-  within "#create_scenario" do 
-    fill_in "feature_name", :with => feature_name
-  end
+  $browser.div(:id => "create_scenario").
+    text_field(:name => "feature_name").
+      value = feature_name
 end
 
 When /^"([^\"]*)" is typed as the scenario name$/ do |scenario_name|
-  within "#create_scenario" do
-    fill_in "scenario_name", :with => scenario_name
-  end
+  $browser.div(:id => "create_scenario").
+    text_field(:name => "scenario_name").
+      value = scenario_name
 end
 
 When /^the scenario body is typed as$/ do |scenario_body|
-  within "#create_scenario" do
-    fill_in "scenario_body", :with => scenario_body
-  end
+  $browser.div(:id => "create_scenario").
+    text_field(:name => "scenario_body").
+      value = scenario_body
 end
 
 When /^create scenario is clicked$/ do
-  within "#create_scenario" do 
-    click_button "Create Scenario"
-  end
+  $browser.div(:id => "create_scenario").
+    button(:text => "Create Scenario").
+      click
 end
 
 Then /^the feature list should contain a feature named "([^\"]*)"$/ do |feature_name|
-  response_body.should have_selector "div#features" do |feature_div|
-    feature_div.should have_selector "h3", :content => "Features:"
-    feature_div.should have_selector "div#feature_list" do |feature_list_div|
-      feature_list_div.should have_selector "h4", :content => feature_name
-    end 
-  end
+  feature_div = $browser.div(:id, "features")
+  feature_div.h3(:index, 1).text.should == "Features:"
+  
+  feature_list_div = feature_div.div(:id => "feature_list")
+  feature_list_div.h4(:index, 1).text.should == feature_name
 end
 
 Then /^the feature "([^\"]*)" should have a scenario named "([^\"]*)" with body$/ do |feature_name, scenario_name, scenario_body|
-  response_body.should have_selector "div#features" do |feature_div|
-    feature_div.should have_selector "h3", :content => "Features:"
-    feature_div.should have_selector "div#feature_list" do |feature_list_div|
-      feature_list_div.should have_selector "h4", :content => feature_name
-      feature_list_div.should have_selector "h5", :content => scenario_name
-      feature_list_div.should have_selector "div.scenario_body", :content => scenario_body
-    end 
-  end
+  feature_div = $browser.div(:id, "features")
+  feature_div.h3(:index, 1).text.should == "Features:"
+
+  feature_list_div = feature_div.div(:id => "feature_list")
+  feature_list_div.h4(:index, 1).text.should == feature_name
+  feature_list_div.h5(:text, scenario_name).should_not be_nil
+  feature_list_div.div(:text, scenario_body).should_not be_nil
 end
 
 When /^cancel is clicked$/ do
-  within "#create_scenario" do 
-    click_button "Cancel"
-  end
+  $browser.div(:id => "create_scenario").
+    button(:text => "Cancel").
+      click
 end
 
 Then /^the feature list should be empty$/ do
-  response_body.should have_selector "div#features" do |feature_div|
-    feature_div.should have_selector "h3", :content => "Features:"
-    feature_div.should have_selector "div#feature_list", :content => ""
-  end
+  feature_div = $browser.div(:id, "features")
+  feature_div.h3(:index, 1).text.should == "Features:"
+
+  feature_list_div = feature_div.div(:id => "feature_list").text.should == ""
 end
 
 Given /^the feature list contains a feature named "([^\"]*)"$/ do |feature_name|
@@ -80,7 +85,7 @@ Given /^the feature "([^\"]*)" contains a scenario named "([^\"]*)" with body$/ 
 end
 
 When /^run scenarios is clicked$/ do
-  pending
+  $browser.link(:text, "Add Scenario").click
 end
 
 Then /^mark the step "([^\"]*)" as undefined$/ do |arg1|

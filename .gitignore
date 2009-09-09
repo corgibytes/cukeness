@@ -1,5 +1,8 @@
 db/development.sqlite3
 db/test.sqlite3
+db/production.sqlite3
 log/cucumber.log
 log/development.log
+log/culerity_development.log
 log/test.log
+tmp
