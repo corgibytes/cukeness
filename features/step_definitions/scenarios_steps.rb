@@ -120,5 +120,14 @@ Then /^display the failure message below the step "([^\"]*)"$/ do |arg1|
   pending
 end
 
+Given /^the add scenario dialog is not visible$/ do
+  pending
+end
+
+Then /^the add scenario dialog is visible$/ do
+  pending
+end
+
+
 
 

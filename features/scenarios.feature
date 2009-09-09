@@ -51,6 +51,35 @@ Feature: Scenarios
       """
       When - is clicked
       """
+    
+    Scenario: Clicking add scenario displays modal dialog box
+      Given home is displayed
+      And the feature list is empty
+      And the add scenario dialog is not visible
+      When add scenario is clicked
+      Then the add scenario dialog is visible
+      
+    Scenario: Clicking cancel hides the modal dialog box
+      Given home is displayed
+      And the feature list is empty
+      And the add scenario dialog is not visible
+      When add scenario is clicked
+      And cancel is clicked
+      Then the add scenario dialog is not visible
+        
+    Scenario: Clicking create scenario hides the model dialog box
+      Given home is displayed
+      And the feature list is empty
+      And the add scenario dialog is not visible
+      When add scenario is clicked
+      And "calculator" is typed as the feature name
+      And "subtract" is typed as the scenario name
+      And the scenario body is typed as 
+        """
+        When - is clicked
+        """
+      And create scenario is clicked
+      Then the add scenario dialog is not visible
       
     Scenario: Run undefined step
       Given home is displayed
