@@ -14,7 +14,7 @@ Given /^the feature list is empty$/ do
 end
 
 When /^add scenario is clicked$/ do
-  $browser.link(:text, "Add Scenario").click
+  $browser.button(:text, "Add Scenario").click
 end
 
 When /^"([^\"]*)" is typed as the feature name$/ do |feature_name|
@@ -36,9 +36,7 @@ When /^the scenario body is typed as$/ do |scenario_body|
 end
 
 When /^create scenario is clicked$/ do
-  $browser.div(:id => "create_scenario").
-    button(:text => "Create Scenario").
-      click
+  $browser.button(:text => "Create Scenario").click
 end
 
 Then /^the feature list should contain a feature named "([^\"]*)"$/ do |feature_name|
@@ -60,9 +58,7 @@ Then /^the feature "([^\"]*)" should have a scenario named "([^\"]*)" with body$
 end
 
 When /^cancel is clicked$/ do
-  $browser.div(:id => "create_scenario").
-    button(:text => "Cancel").
-      click
+  $browser.button(:text => "Cancel").click
 end
 
 Then /^the feature list should be empty$/ do
@@ -85,18 +81,10 @@ Given /^the feature "([^\"]*)" contains a scenario named "([^\"]*)" with body$/ 
 end
 
 When /^run scenarios is clicked$/ do
-  $browser.link(:text, "Add Scenario").click
-end
-
-Then /^mark the step "([^\"]*)" as undefined$/ do |arg1|
-  pending
+  $browser.button(:text, "Run Scenarios").click
 end
 
 Given /^glue exists for the step "([^\"]*)" that invokes pending$/ do |arg1|
-  pending
-end
-
-Then /^mark the step "([^\"]*)" as pending$/ do |arg1|
   pending
 end
 
@@ -104,11 +92,19 @@ Given /^glue exists for the step "([^\"]*)"$/ do |arg1|
   pending
 end
 
-Then /^mark the step "([^\"]*)" as passed$/ do |arg1|
+Given /^glue exists for the step "([^\"]*)" that fails$/ do |arg1|
   pending
 end
 
-Given /^glue exists for the step "([^\"]*)" that fails$/ do |arg1|
+Then /^mark the step "([^\"]*)" as undefined$/ do |arg1|
+  pending
+end
+
+Then /^mark the step "([^\"]*)" as pending$/ do |arg1|
+  pending
+end
+
+Then /^mark the step "([^\"]*)" as passed$/ do |arg1|
   pending
 end
 
@@ -121,11 +117,11 @@ Then /^display the failure message below the step "([^\"]*)"$/ do |arg1|
 end
 
 Given /^the add scenario dialog is not visible$/ do
-  pending
+  $browser.div(:id, "create_scenario").visible?.should be_false
 end
 
 Then /^the add scenario dialog is visible$/ do
-  pending
+  $browser.div(:id, "create_scenario").visible?.should be_true
 end
 
 

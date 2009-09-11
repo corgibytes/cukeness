@@ -1,22 +1,92 @@
-<a href="#">Add Scenario</a>
+<style type="text/css">
+  fieldset { padding: 0; border: 0; }
+  .text { width: 95%; }
+  .multiline { height: 175px; }
+</style>
 
-<div id="create_scenario">
+<script type="text/javascript">
+	$(function() {
+		
+		
+		$("#create_scenario").dialog({
+		  autoOpen: false,
+			bgiframe: true,
+			modal: true,
+			height: 500,
+			width: 400,
+			position: "top",
+			buttons: {
+			  "Create Scenario": function() {
+			    $("#create_scenario form").submit();
+			    $(this).dialog("close");
+			  },
+			  
+			  "Cancel": function() {
+		      $(this).dialog("close");
+			  }
+			}
+		});
+		
+		
+		$(".fg-button:not(.ui-state-disabled)").hover(
+      function() { 
+        $(this).addClass("ui-state-hover");
+        if ($(this).data('__mousedown')) {
+          if($(this).is('.ui-state-active.fg-button-toggleable, .fg-buttonset-multi .ui-state-active'))
+            $(this).removeClass("ui-state-active"); 
+          else
+            $(this).addClass("ui-state-active");
+        } 
+      }, 
+      function() { $(this).removeClass("ui-state-hover"); })
+    .mousedown(
+      function() {
+        $(this).data('__mousedown', true);
+        $(this).parents('.fg-buttonset-single:first').find(".fg-button.ui-state-active").removeClass("ui-state-active");
+        if($(this).is('.ui-state-active.fg-button-toggleable, .fg-buttonset-multi .ui-state-active'))
+          $(this).removeClass("ui-state-active"); 
+        else
+          $(this).addClass("ui-state-active"); 
+      })
+    .mouseup(
+      function() {
+        $(this).data('__mousedown', false);
+        if(!$(this).is('.fg-button-toggleable, .fg-buttonset-single .fg-button, .fg-buttonset-multi .fg-button'))
+          $(this).removeClass("ui-state-active");
+      })
+    .mouseout(
+      function() {
+        if(!$(this).is('.fg-button-toggleable, .fg-buttonset-single .fg-button, .fg-buttonset-multi .fg-button'))
+          $(this).removeClass("ui-state-active");
+      });
+      
+      
+      $("#add_scenario").click(function() {
+    	  $("#create_scenario").dialog("open");
+    	});
+    	
+	});
+</script>
+
+
+<button id="add_scenario" class="fg-button ui-state-default ui-corner-all">Add Scenario</button>
+<button id="run_scenarios" class="fg-button ui-state-default ui-corner-all">Run Scenarios</button>
+
+<div id="create_scenario" title="Add a scenario">
   <% form_tag :controller => :scenarios, :action => :create do %>
     <fieldset>
       <p>
         <label for="feature_name">Feature Name:</label><br/>
-        <%= text_field_tag :feature_name %>
+        <%= text_field_tag :feature_name, "", :class => "text" %>
       </p>
       <p>
         <label for="scenario_name">Scenario Name:</label><br/>
-        <%= text_field_tag :scenario_name %>
+        <%= text_field_tag :scenario_name, "", :class => "text" %>
       </p>
       <p>
         <label for="scenario_body">Body:</label><br/>
-        <%= text_area_tag :scenario_body %>
+        <%= text_area_tag :scenario_body, "", :class => "text multiline" %>
       </p>
-      <%= submit_tag "Create Scenario" %>
-      <input type="button" value="Cancel"/>
     </fieldset>
   <% end %>
 </div>
