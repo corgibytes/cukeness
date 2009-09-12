@@ -1,5 +1,5 @@
 Before do
-  [Scenario, Feature].each do |model|
+  [Scenario, Feature, Setting].each do |model|
     model.delete_all
   end
 end
@@ -82,6 +82,13 @@ end
 
 When /^run scenarios is clicked$/ do
   $browser.button(:text, "Run Scenarios").click
+end
+
+Given /^the step definitions are located at "([^\"]*)"$/ do |steps_location|
+  setting = Setting.new
+  setting.name = "steps_location"
+  setting.value = steps_location
+  setting.save
 end
 
 Given /^glue exists for the step "([^\"]*)" that invokes pending$/ do |arg1|

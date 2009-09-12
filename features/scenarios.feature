@@ -88,6 +88,7 @@ Feature: Scenarios
         """
         When + is clicked
         """
+      And the step definitions are located at "tmp/steps"
       When run scenarios is clicked
       Then mark the step "When + is clicked" as undefined
       
@@ -98,6 +99,7 @@ Feature: Scenarios
         """
         When + is clicked
         """
+      And the step definitions are located at "tmp/steps"        
       And glue exists for the step "When + is clicked" that invokes pending
       When run scenarios is clicked
       Then mark the step "When + is clicked" as pending
@@ -109,6 +111,7 @@ Feature: Scenarios
         """
         When + is clicked
         """
+      And the step definitions are located at "tmp/steps"        
       And glue exists for the step "When + is clicked"
       When run scenarios is clicked
       Then mark the step "When + is clicked" as passed
@@ -120,6 +123,7 @@ Feature: Scenarios
         """
         When + is clicked
         """
+      And the step definitions are located at "tmp/steps"        
       And glue exists for the step "When + is clicked" that fails
       When run scenarios is clicked
       Then mark the step "When + is clicked" as failed
