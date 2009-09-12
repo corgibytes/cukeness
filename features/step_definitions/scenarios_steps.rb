@@ -123,8 +123,8 @@ Given /^glue exists for the step "([^\"]*)" that fails$/ do |step|
   steps_file.close
 end
 
-Then /^mark the step "([^\"]*)" as undefined$/ do |arg1|
-  pending
+Then /^mark the step "([^\"]*)" as undefined$/ do |step|
+  $browser.text.include?("[undefined] #{step}").should be_true
 end
 
 Then /^mark the step "([^\"]*)" as pending$/ do |arg1|
