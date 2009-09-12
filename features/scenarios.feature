@@ -100,7 +100,7 @@ Feature: Scenarios
         When + is clicked
         """
       And the step definitions are located at "tmp/steps"        
-      And glue exists for the step "When + is clicked" that invokes pending
+      And glue exists for the step "+ is clicked" that invokes pending
       When run scenarios is clicked
       Then mark the step "When + is clicked" as pending
       
@@ -112,7 +112,7 @@ Feature: Scenarios
         When + is clicked
         """
       And the step definitions are located at "tmp/steps"        
-      And glue exists for the step "When + is clicked"
+      And glue exists for the step "+ is clicked"
       When run scenarios is clicked
       Then mark the step "When + is clicked" as passed
       
@@ -124,7 +124,7 @@ Feature: Scenarios
         When + is clicked
         """
       And the step definitions are located at "tmp/steps"        
-      And glue exists for the step "When + is clicked" that fails
+      And glue exists for the step "+ is clicked" that fails
       When run scenarios is clicked
       Then mark the step "When + is clicked" as failed
       And display the failure message below the step "When + is clicked"

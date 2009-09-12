@@ -85,22 +85,42 @@ When /^run scenarios is clicked$/ do
 end
 
 Given /^the step definitions are located at "([^\"]*)"$/ do |steps_location|
+  if not File::exists? steps_location 
+    Dir.mkdir steps_location
+  end
   setting = Setting.new
   setting.name = "steps_location"
   setting.value = steps_location
   setting.save
 end
 
-Given /^glue exists for the step "([^\"]*)" that invokes pending$/ do |arg1|
-  pending
+Given /^glue exists for the step "([^\"]*)" that invokes pending$/ do |step|
+  steps_location = Setting.find_by_name("steps_location").value
+  
+  steps_file = File.new(steps_location + "/test_steps.rb", "w+")
+  steps_file.puts "When #{step} do"
+  steps_file.puts "  pending"
+  steps_file.puts "end"
+  steps_file.close
 end
 
-Given /^glue exists for the step "([^\"]*)"$/ do |arg1|
-  pending
+Given /^glue exists for the step "([^\"]*)"$/ do |step|
+  steps_location = Setting.find_by_name("steps_location").value
+  
+  steps_file = File.new(steps_location + "/test_steps.rb", "w+")
+  steps_file.puts "When #{step} do"
+  steps_file.puts "end"
+  steps_file.close
 end
 
-Given /^glue exists for the step "([^\"]*)" that fails$/ do |arg1|
-  pending
+Given /^glue exists for the step "([^\"]*)" that fails$/ do |step|
+  steps_location = Setting.find_by_name("steps_location").value
+  
+  steps_file = File.new(steps_location + "/test_steps.rb", "w+")
+  steps_file.puts "When #{step} do"
+  steps_file.puts "  raise 'This should fail'"
+  steps_file.puts "end"
+  steps_file.close
 end
 
 Then /^mark the step "([^\"]*)" as undefined$/ do |arg1|
