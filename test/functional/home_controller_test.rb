@@ -16,8 +16,10 @@ class HomeControllerTest < ActionController::TestCase
     setting = Setting.new
     setting.name = "steps_location"
     setting.value = "/tmp/steps"
+    setting.save
     
     if File::exists? "/tmp/steps"
+      File.delete "/tmp/steps/generated.feature"
       Dir.rmdir "/tmp/steps"
     end
     Dir.mkdir "/tmp/steps"
@@ -31,13 +33,21 @@ class HomeControllerTest < ActionController::TestCase
     
     @controller.cucumber_results.should == "cucumber results"
     
-    File.exists?("/tmp/steps/generated.feature").should be_true
+    File.exists?("/tmp/steps/generated.feature").should == true
     
     file = File.open("/tmp/steps/generated.feature", "r")
     file_lines = file.readlines
     
-    file_lines[0].should == "Feature: Test Feature"
-    file_lines[1].should == "Scenario: Test Scenario"
-    file_lines[2].should == "When something happens"
+    file_lines[0].should == "Feature: Test Feature\n"
+    file_lines[1].should == "Scenario: Test Scenario\n"
+    file_lines[2].should == "When something happens\n"
+    
+    assert_redirected_to :controller => :home, :action => :index
+  end
+  
+  test "run_all action should not respond to get" do
+    get :run_all
+    
+    assert_response :missing
   end
 end
