@@ -1,15 +1,15 @@
 require 'test_helper'
 
-class CukenessFormatterTest < ActiveSupport::TestCase
-  test "formatter output" do
-    test_dir = "/tmp/formatter_test"
-    feature_file_name = test_dir + "/test.feature"
+class CucumberRunnerTest < ActiveSupport::TestCase
+  test "run should invoke cucumber command and return output" do
+    test_dir = "/tmp/runner_test"
+    feature_file_name = test_dir + "/generated.feature"
     steps_file_name = test_dir + "/test_steps.rb"
-    
+
     if not File.exists? test_dir
       Dir.mkdir test_dir
     end
-    
+
     delete_file_if_exists feature_file_name
     feature_file = File.open(feature_file_name, "w+")
     feature_file.puts <<eos
@@ -25,7 +25,7 @@ Scenario: Test pending
 When this should be pending
 eos
     feature_file.close
-  
+
     delete_file_if_exists steps_file_name
     steps_file = File.open(steps_file_name, "w+")
     steps_file.puts <<eos
@@ -40,7 +40,8 @@ end
 eos
     steps_file.close
     
-    output = `cucumber --format CukenessFormatter -r #{File.dirname(__FILE__)}/../../app/cukeness_formatter.rb -r #{steps_file_name} #{feature_file_name}`
+    runner = CucumberRunner.new test_dir
+    output = runner.run
     
     output.should == <<eos
 Feature: Feature: Test feature

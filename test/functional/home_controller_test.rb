@@ -13,18 +13,17 @@ class HomeControllerTest < ActionController::TestCase
     scenario.body = "When something happens"
     scenario.save
     
+    steps_location = "/tmp/steps"
     setting = Setting.new
     setting.name = "steps_location"
-    setting.value = "/tmp/steps"
+    setting.value = steps_location
     setting.save
+
+    generated_feature_file = steps_location + '/generated.feature'
+    create_directory_if_missing steps_location
+    delete_file_if_exists generated_feature_file
     
-    if File::exists? "/tmp/steps"
-      File.delete "/tmp/steps/generated.feature"
-      Dir.rmdir "/tmp/steps"
-    end
-    Dir.mkdir "/tmp/steps"
-    
-    cucumber_runner = CucumberRunner.new
+    cucumber_runner = CucumberRunner.new steps_location
     @controller.cucumber_runner = cucumber_runner
     
     cucumber_runner.stub!(:run).and_return("cucumber results")
@@ -33,9 +32,9 @@ class HomeControllerTest < ActionController::TestCase
     
     @controller.cucumber_results.should == "cucumber results"
     
-    File.exists?("/tmp/steps/generated.feature").should == true
+    File.exists?(generated_feature_file).should == true
     
-    file = File.open("/tmp/steps/generated.feature", "r")
+    file = File.open(generated_feature_file, "r")
     file_lines = file.readlines
     
     file_lines[0].should == "Feature: Test Feature\n"

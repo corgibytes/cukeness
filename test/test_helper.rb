@@ -37,4 +37,16 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  
+  def delete_file_if_exists(file_name)
+    if File.exists? file_name
+      File.delete file_name
+    end
+  end
+  
+  def create_directory_if_missing(directory)
+    if not File.exists? directory
+      Dir.mkdir directory
+    end
+  end
 end
