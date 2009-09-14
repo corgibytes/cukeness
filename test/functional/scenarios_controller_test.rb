@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class ScenariosControllerTest < ActionController::TestCase
-  # Replace this with your real tests.
   test "create action will create a new feature and a new scenario" do
     post :create, { 
       :feature_name => "New Feature", 
