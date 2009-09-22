@@ -16,7 +16,7 @@ class CukenessFormatter < Cucumber::Ast::Visitor
       end
     end
     
-    @io.puts "Feature: #{first_line}"
+    @io.puts "#{first_line}"
   end
   
   def visit_scenario_name(keyword, name, file_colon_line, source_indent)

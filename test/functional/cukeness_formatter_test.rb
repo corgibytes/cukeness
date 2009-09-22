@@ -43,7 +43,7 @@ eos
     output = `cucumber --format CukenessFormatter -r #{File.dirname(__FILE__)}/../../app/cukeness_formatter.rb -r #{steps_file_name} #{feature_file_name}`
     
     output.should == <<eos
-Feature: Feature: Test feature
+Feature: Test feature
 Scenario: Test undefined
 [undefined] When this should be undefined
 Scenario: Test passing

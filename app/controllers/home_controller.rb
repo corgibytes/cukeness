@@ -1,8 +1,5 @@
 class HomeController < ApplicationController
   def index
-  end
-  
-  def run_all
     if request.post? 
       steps_dir = Setting.find_by_name("steps_location").value
       feature_file = File.open(steps_dir + "/generated.feature", "w+")
@@ -19,14 +16,15 @@ class HomeController < ApplicationController
       feature_file.close
     
       @cucumber_results = cucumber_runner.run
-
-      redirect_to :controller => :home, :action => :index      
-    else
-      render :nothing => true, :status => "404"
     end
   end
   
   def cucumber_runner 
+    if not @cucumber_runner 
+      steps_dir = Setting.find_by_name("steps_location").value
+      @cucumber_runner = CucumberRunner.new steps_dir
+    end
+      
     @cucumber_runner
   end
   

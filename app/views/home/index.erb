@@ -65,12 +65,18 @@
     	  $("#create_scenario").dialog("open");
     	});
     	
+    	$("#run_scenarios").click(function() {
+    	  $("#run_all_form").submit();
+    	});
+    	
 	});
 </script>
 
 
 <button id="add_scenario" class="fg-button ui-state-default ui-corner-all">Add Scenario</button>
 <button id="run_scenarios" class="fg-button ui-state-default ui-corner-all">Run Scenarios</button>
+
+<%= form_tag ({:controller => :home, :action => :index}, :id => "run_all_form") %>
 
 <div id="create_scenario" title="Add a scenario">
   <% form_tag :controller => :scenarios, :action => :create do %>
@@ -90,6 +96,10 @@
     </fieldset>
   <% end %>
 </div>
+
+<% if @cucumber_results %>
+  <%= @cucumber_results %>
+<% end %>
 
 <div id="features">
   <h3>Features:</h3>

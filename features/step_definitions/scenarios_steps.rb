@@ -117,7 +117,7 @@ Given /^glue exists for the step "([^\"]*)" that fails$/ do |step|
   steps_location = Setting.find_by_name("steps_location").value
   
   steps_file = File.new(steps_location + "/test_steps.rb", "w+")
-  steps_file.puts "When /#{step}/ do"
+  steps_file.puts "When /#{step.replace('+', '\\+')}/ do"
   steps_file.puts "  raise 'This should fail'"
   steps_file.puts "end"
   steps_file.close

@@ -44,7 +44,7 @@ eos
     output = runner.run
     
     output.should == <<eos
-Feature: Feature: Test feature
+Feature: Test feature
 Scenario: Test undefined
 [undefined] When this should be undefined
 Scenario: Test passing

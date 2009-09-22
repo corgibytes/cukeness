@@ -2,7 +2,7 @@ require 'test_helper'
 
 class HomeControllerTest < ActionController::TestCase
   # Replace this with your real tests.
-  test "run all will ask cucumber to run all scenarios" do
+  test "post to index will ask cucumber to run all scenarios" do
     feature = Feature.new
     feature.name = "Test Feature"
     feature.save
@@ -28,7 +28,7 @@ class HomeControllerTest < ActionController::TestCase
     
     cucumber_runner.stub!(:run).and_return("cucumber results")
     
-    post :run_all, {}
+    post :index, {}
     
     @controller.cucumber_results.should == "cucumber results"
     
@@ -40,13 +40,5 @@ class HomeControllerTest < ActionController::TestCase
     file_lines[0].should == "Feature: Test Feature\n"
     file_lines[1].should == "Scenario: Test Scenario\n"
     file_lines[2].should == "When something happens\n"
-    
-    assert_redirected_to :controller => :home, :action => :index
-  end
-  
-  test "run_all action should not respond to get" do
-    get :run_all
-    
-    assert_response :missing
   end
 end
