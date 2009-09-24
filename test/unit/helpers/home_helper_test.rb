@@ -15,7 +15,7 @@ eos
     <h4>Calculator</h4>
     <h5>Add</h5>
     <div class="scenario_body">
-      <span class="step undefined">[undefined] When + is clicked<span>
+      <span class="step undefined">[undefined] When + is clicked</span>
     </div>
   </div>
 </div>
