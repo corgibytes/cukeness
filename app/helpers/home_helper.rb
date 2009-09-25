@@ -20,6 +20,12 @@ module HomeHelper
         body_opened = true
       elsif line.include? "[undefined]"
         result << "      <span class=\"step undefined\">#{line.strip}</span>\n"
+      elsif line.include? "[pending]"
+        result << "      <span class=\"step pending\">#{line.strip}</span>\n"        
+      elsif line.include? "[passed]"
+        result << "      <span class=\"step passed\">#{line.strip}</span>\n"        
+      elsif line.include? "[failed]"
+        result << "      <span class=\"step failed\">#{line.strip}</span>\n"        
       end
     end
     if body_opened 

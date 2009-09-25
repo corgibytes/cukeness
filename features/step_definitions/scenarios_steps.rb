@@ -99,7 +99,9 @@ Given /^glue exists for the step "([^\"]*)" that invokes pending$/ do |step|
   steps_location = Setting.find_by_name("steps_location").value
   
   steps_file_name = steps_location + "/test_steps.rb"
-  File.delete steps_file_name  
+  if File::exists? steps_file_name
+    File.delete steps_file_name  
+  end
   steps_file = File.new(steps_file_name, "w+")
   steps_file.puts "When /#{step}/ do"
   steps_file.puts "  pending"
@@ -112,7 +114,9 @@ Given /^glue exists for the step "([^\"]*)"$/ do |step|
   steps_location = Setting.find_by_name("steps_location").value
   
   steps_file_name = steps_location + "/test_steps.rb"
-  File.delete steps_file_name  
+  if File::exists? steps_file_name
+    File.delete steps_file_name  
+  end 
   steps_file = File.new(steps_file_name, "w+")
   steps_file.puts "When /#{step}/ do"
   steps_file.puts "end"
@@ -124,7 +128,9 @@ Given /^glue exists for the step "([^\"]*)" that fails$/ do |step|
   steps_location = Setting.find_by_name("steps_location").value
   
   steps_file_name = steps_location + "/test_steps.rb"
-  File.delete steps_file_name  
+  if File::exists? steps_file_name
+    File.delete steps_file_name  
+  end
   steps_file = File.new(steps_file_name, "w+")
   steps_file.puts "When /#{step}/ do"
   steps_file.puts "  raise 'This should fail'"
@@ -137,15 +143,15 @@ Then /^mark the step "([^\"]*)" as undefined$/ do |step|
 end
 
 Then /^mark the step "([^\"]*)" as pending$/ do |arg1|
-  pending
+  $browser.html.include?("<span class=\"step pending\">[pending] #{step}</span>").should be_true
 end
 
 Then /^mark the step "([^\"]*)" as passed$/ do |arg1|
-  pending
+  $browser.html.include?("<span class=\"step passed\">[passed] #{step}</span>").should be_true
 end
 
 Then /^mark the step "([^\"]*)" as failed$/ do |arg1|
-  pending
+  $browser.html.include?("<span class=\"step failed\">[failed] #{step}</span>").should be_true
 end
 
 Then /^display the failure message below the step "([^\"]*)"$/ do |arg1|
