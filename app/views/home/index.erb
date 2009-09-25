@@ -17,7 +17,7 @@
 			position: "top",
 			buttons: {
 			  "Create Scenario": function() {
-			    $("#create_scenario form").submit();
+			    $("#create_scenario_form").submit();
 			    $(this).dialog("close");
 			  },
 			  
@@ -79,7 +79,7 @@
 <%= form_tag ({:controller => :home, :action => :index}, :id => "run_all_form") %>
 
 <div id="create_scenario" title="Add a scenario">
-  <% form_tag :controller => :scenarios, :action => :create do %>
+  <% form_tag ({:controller => :scenarios, :action => :create}, :id => "create_scenario_form") do %>
     <fieldset>
       <p>
         <label for="feature_name">Feature Name:</label><br/>
@@ -98,9 +98,8 @@
 </div>
 
 <% if @cucumber_results %>
-  <%= @cucumber_results %>
-<% end %>
-
+  <%= parse_cucumber_output @cucumber_results %>
+<% else %>
 <div id="features">
   <h3>Features:</h3>
   <div id="feature_list">
@@ -115,3 +114,4 @@
     <% end %>
   </div>
 </div>
+<% end %>

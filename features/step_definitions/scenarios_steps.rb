@@ -44,6 +44,7 @@ Then /^the feature list should contain a feature named "([^\"]*)"$/ do |feature_
   feature_div.h3(:index, 1).text.should == "Features:"
   
   feature_list_div = feature_div.div(:id => "feature_list")
+  puts feature_list_div.html
   feature_list_div.h4(:index, 1).text.should == feature_name
 end
 
