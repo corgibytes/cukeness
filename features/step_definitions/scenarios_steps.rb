@@ -95,36 +95,45 @@ Given /^the step definitions are located at "([^\"]*)"$/ do |steps_location|
 end
 
 Given /^glue exists for the step "([^\"]*)" that invokes pending$/ do |step|
+  step = step.gsub("+", "\\\\+")
   steps_location = Setting.find_by_name("steps_location").value
   
-  steps_file = File.new(steps_location + "/test_steps.rb", "w+")
-  steps_file.puts "When #{step} do"
+  steps_file_name = steps_location + "/test_steps.rb"
+  File.delete steps_file_name  
+  steps_file = File.new(steps_file_name, "w+")
+  steps_file.puts "When /#{step}/ do"
   steps_file.puts "  pending"
   steps_file.puts "end"
   steps_file.close
 end
 
 Given /^glue exists for the step "([^\"]*)"$/ do |step|
+  step = step.gsub("+", "\\\\+")
   steps_location = Setting.find_by_name("steps_location").value
   
-  steps_file = File.new(steps_location + "/test_steps.rb", "w+")
-  steps_file.puts "When #{step} do"
+  steps_file_name = steps_location + "/test_steps.rb"
+  File.delete steps_file_name  
+  steps_file = File.new(steps_file_name, "w+")
+  steps_file.puts "When /#{step}/ do"
   steps_file.puts "end"
   steps_file.close
 end
 
 Given /^glue exists for the step "([^\"]*)" that fails$/ do |step|
+  step = step.gsub("+", "\\\\+")
   steps_location = Setting.find_by_name("steps_location").value
   
-  steps_file = File.new(steps_location + "/test_steps.rb", "w+")
-  steps_file.puts "When /#{step.replace('+', '\\+')}/ do"
+  steps_file_name = steps_location + "/test_steps.rb"
+  File.delete steps_file_name  
+  steps_file = File.new(steps_file_name, "w+")
+  steps_file.puts "When /#{step}/ do"
   steps_file.puts "  raise 'This should fail'"
   steps_file.puts "end"
   steps_file.close
 end
 
 Then /^mark the step "([^\"]*)" as undefined$/ do |step|
-  $browser.text.include?("[undefined] #{step}").should be_true
+  $browser.html.include?("<span class=\"step undefined\">[undefined] #{step}</span>").should be_true
 end
 
 Then /^mark the step "([^\"]*)" as pending$/ do |arg1|
