@@ -95,36 +95,31 @@ Given /^the step definitions are located at "([^\"]*)"$/ do |steps_location|
 end
 
 Given /^glue exists for the step "([^\"]*)" that invokes pending$/ do |step|
-  step = step.gsub("+", "\\\\+")
-  steps_location = Setting.find_by_name("steps_location").value
-  
-  steps_file_name = steps_location + "/test_steps.rb"
-  if File::exists? steps_file_name
-    File.delete steps_file_name  
-  end
-  steps_file = File.new(steps_file_name, "w+")
-  steps_file.puts "When /#{step}/ do"
-  steps_file.puts "  pending"
-  steps_file.puts "end"
-  steps_file.close
+  write_step_file <<-eos
+When /#{step}/ do
+  pending
+end
+eos
 end
 
-Given /^glue exists for the step "([^\"]*)"$/ do |step|
-  step = step.gsub("+", "\\\\+")
-  steps_location = Setting.find_by_name("steps_location").value
-  
-  steps_file_name = steps_location + "/test_steps.rb"
-  if File::exists? steps_file_name
-    File.delete steps_file_name  
-  end 
-  steps_file = File.new(steps_file_name, "w+")
-  steps_file.puts "When /#{step}/ do"
-  steps_file.puts "end"
-  steps_file.close
+Given /^glue exists for the step "([^\"]*)"$/ do |step|  
+  write_step_file <<-eos
+When /#{step}/ do
+end
+eos
 end
 
 Given /^glue exists for the step "([^\"]*)" that fails$/ do |step|
-  step = step.gsub("+", "\\\\+")
+  write_step_file <<-eos
+When /#{step}/ do
+  raise 'This should fail'
+end
+eos
+end
+
+def write_step_file(contents)
+  contents = contents.gsub("+", "\\\\+")
+  
   steps_location = Setting.find_by_name("steps_location").value
   
   steps_file_name = steps_location + "/test_steps.rb"
@@ -132,10 +127,8 @@ Given /^glue exists for the step "([^\"]*)" that fails$/ do |step|
     File.delete steps_file_name  
   end
   steps_file = File.new(steps_file_name, "w+")
-  steps_file.puts "When /#{step}/ do"
-  steps_file.puts "  raise 'This should fail'"
-  steps_file.puts "end"
-  steps_file.close
+  steps_file.puts contents
+  steps_file.close  
 end
 
 Then /^mark the step "([^\"]*)" as undefined$/ do |step|
