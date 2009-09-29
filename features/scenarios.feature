@@ -128,3 +128,19 @@ Feature: Scenarios
       When run scenarios is clicked
       Then mark the step "When + is clicked" as failed
       And display the failure message below the step "When + is clicked"
+      
+    Scenario: Running multiple features
+      Given home is displayed
+      And the feature list contains a feature named "Calculator"
+      And the feature "Calculator" contains a scenario named "Add" with body
+        """
+        When + is clicked
+        """
+      And the feature list contains a feature named "Other Feature"
+      And the feature "Other Feature" contains a scenario named "The Scenario" with body
+        """
+        When something happens
+        """
+      When run scenarios is clicked 
+      Then mark the step "When + is clicked" as undefined
+      And mark the step "When something happens" as undefined

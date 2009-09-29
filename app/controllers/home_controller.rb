@@ -2,19 +2,8 @@ class HomeController < ApplicationController
   def index
     if request.post? 
       steps_dir = Setting.find_by_name("steps_location").value
-      feature_file = File.open(steps_dir + "/generated.feature", "w+")
-    
-      features = Feature.all
-      features.each do |feature|
-        feature_file.puts "Feature: #{feature.name}"
-        feature.scenarios.each do |scenario|
-          feature_file.puts "Scenario: #{scenario.name}"
-          feature_file.puts scenario.body
-        end
-      end
-    
-      feature_file.close
-    
+      
+      feature_file_generator.generate
       @cucumber_results = cucumber_runner.run
     end
   end
@@ -30,6 +19,19 @@ class HomeController < ApplicationController
   
   def cucumber_runner=(value)
     @cucumber_runner = value
+  end
+  
+  def feature_file_generator
+    if not @feature_file_generator
+      steps_dir = Setting.find_by_name("steps_location").value
+      @feature_file_generator = FeatureFileGenerator.new steps_dir
+    end
+    
+    @feature_file_generator
+  end
+  
+  def feature_file_generator=(value)
+    @feature_file_generator = value
   end
   
   def cucumber_results
