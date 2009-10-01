@@ -96,6 +96,7 @@ Feature: Scenarios
         When + is clicked
         """
       And the step definitions are located at "tmp/steps"
+      And no glue exists
       When run scenarios is clicked
       Then mark the step "When + is clicked" as undefined
       

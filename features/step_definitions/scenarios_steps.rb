@@ -117,6 +117,11 @@ end
 eos
 end
 
+Given /^no glue exists$/ do
+  write_step_file <<-eos
+eos
+end
+
 def write_step_file(contents)
   contents = contents.gsub("+", "\\\\+")
   
