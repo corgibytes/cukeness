@@ -27,6 +27,24 @@
 			}
 		});
 		
+		$("#edit_settings").dialog({
+		  autoOpen: false,
+		  bgiframe: true,
+		  modal: true,
+		  height: 300,
+		  width: 400,
+		  position: "top",
+		  buttons: {
+		    "Save Settings": function() {
+		      $(this).dialog("close");
+		    },
+		    
+		    "Cancel": function() {
+		      $(this).dialog("close");
+		    }
+		  }
+		});
+		
 		
 		$(".fg-button:not(.ui-state-disabled)").hover(
       function() { 
@@ -72,6 +90,13 @@
 	});
 </script>
 
+<% if not @steps_location_exists %>
+<script type="text/javascript">
+	$(function() {
+	  $("#edit_settings").dialog("open");
+  });
+</script>
+<% end %>
 
 <button id="add_scenario" class="fg-button ui-state-default ui-corner-all">Add Scenario</button>
 <button id="run_scenarios" class="fg-button ui-state-default ui-corner-all">Run Scenarios</button>
@@ -96,6 +121,9 @@
       </p>
     </fieldset>
   <% end %>
+</div>
+
+<div id="edit_settings" title="Edit Settings">
 </div>
 
 <% if @cucumber_results %>

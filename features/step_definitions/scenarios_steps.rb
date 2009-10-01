@@ -159,6 +159,46 @@ Then /^the add scenario dialog is visible$/ do
   $browser.div(:id, "create_scenario").visible?.should be_true
 end
 
+Given /^there are no settings$/ do
+  Setting.delete_all
+end
+
+Given /^the step location setting is set to "([^\"]*)"$/ do |steps_location_value|
+  setting = Setting.find_by_name("steps_location")
+  if not setting
+    setting = Setting.new
+    setting.name = "steps_location"
+  end  
+  
+  setting.value = steps_location_value
+  setting.save
+end
+
+Then /^the settings dialog should be visible$/ do
+  $browser.div(:id, "edit_settings").visible?.should be_true
+end
+
+Then /^the settings dialog should not be visible$/ do
+  $browser.div(:id, "edit_settings").visible?.should be_false
+end
+
+Then /^the steps location box should be empty$/ do
+  pending
+end
+
+Then /^the steps location box should be marked as required$/ do
+  pending
+end
+
+Given /^the steps location setting is set to a directory that does not exist$/ do
+  pending
+end
+
+Then /^an error message should be displayed with text$/ do |string|
+  pending
+end
+
+
 
 
 

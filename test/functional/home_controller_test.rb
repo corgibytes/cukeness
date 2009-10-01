@@ -22,4 +22,22 @@ class HomeControllerTest < ActionController::TestCase
     
     @controller.cucumber_results.should == "cucumber results"    
   end
+  
+  test "get to index will indicate that the steps location setting has not been set" do
+    get :index
+    
+    @controller.steps_location_exists.should == false
+  end
+  
+  test "get to index will indicate that the steps location setting has been set" do
+    steps_location = "/tmp/steps"
+    setting = Setting.new
+    setting.name = "steps_location"
+    setting.value = steps_location
+    setting.save
+
+    get :index
+    
+    @controller.steps_location_exists.should == true
+  end
 end
