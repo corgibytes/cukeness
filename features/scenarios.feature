@@ -143,6 +143,7 @@ Feature: Scenarios
     Scenario: Running multiple features
       Given the step location setting is set to "tmp/steps"
       Given home is displayed
+      And no glue exists
       And the feature list contains a feature named "Calculator"
       And the feature "Calculator" contains a scenario named "Add" with body
         """

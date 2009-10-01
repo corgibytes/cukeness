@@ -7,7 +7,7 @@ class CucumberRunner
   
   def run
     cukeness_formatter_file_name = File.dirname(__FILE__) + "/cukeness_formatter.rb"
-    command = "cucumber --format CukenessFormatter -r #{cukeness_formatter_file_name} -r #{@steps_directory} #{@steps_directory}/generated.feature"
+    command = "cucumber --format CukenessFormatter -r #{cukeness_formatter_file_name} -r #{@steps_directory} #{@steps_directory}/generated_*.feature"
     
     stdin, stdout, stderr = Open3.popen3(command)
     
