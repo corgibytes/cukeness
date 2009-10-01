@@ -135,15 +135,15 @@ Then /^mark the step "([^\"]*)" as undefined$/ do |step|
   $browser.html.include?("<span class=\"step undefined\">[undefined] #{step}</span>").should be_true
 end
 
-Then /^mark the step "([^\"]*)" as pending$/ do |arg1|
+Then /^mark the step "([^\"]*)" as pending$/ do |step|
   $browser.html.include?("<span class=\"step pending\">[pending] #{step}</span>").should be_true
 end
 
-Then /^mark the step "([^\"]*)" as passed$/ do |arg1|
+Then /^mark the step "([^\"]*)" as passed$/ do |step|
   $browser.html.include?("<span class=\"step passed\">[passed] #{step}</span>").should be_true
 end
 
-Then /^mark the step "([^\"]*)" as failed$/ do |arg1|
+Then /^mark the step "([^\"]*)" as failed$/ do |step|
   $browser.html.include?("<span class=\"step failed\">[failed] #{step}</span>").should be_true
 end
 
