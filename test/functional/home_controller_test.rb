@@ -40,4 +40,17 @@ class HomeControllerTest < ActionController::TestCase
     
     @controller.steps_location_exists.should == true
   end
+  
+  test "post to index will display an error message if the steps location does not exist" do
+    steps_location = "/does/not/exist"
+    setting = Setting.new
+    setting.name = "steps_location"
+    setting.value = steps_location
+    setting.save
+    
+    post :index, {}
+    
+    @controller.error_message.should == 
+      "The steps location setting refers to a path that does not exist or is not a directory. Please change the setting and try again."
+  end
 end

@@ -172,6 +172,7 @@ Feature: Scenarios
       
     Scenario: Setting directory must exist when run is clicked
       Given the steps location setting is set to a directory that does not exist
+      And home is displayed
       When run scenarios is clicked
       Then an error message should be displayed with text
         """

@@ -169,14 +169,7 @@ Given /^there are no settings$/ do
 end
 
 Given /^the step location setting is set to "([^\"]*)"$/ do |steps_location_value|
-  setting = Setting.find_by_name("steps_location")
-  if not setting
-    setting = Setting.new
-    setting.name = "steps_location"
-  end  
-  
-  setting.value = steps_location_value
-  setting.save
+  set_steps_location_to steps_location_value
 end
 
 Then /^the settings dialog should be visible$/ do
@@ -188,19 +181,35 @@ Then /^the settings dialog should not be visible$/ do
 end
 
 Then /^the steps location box should be empty$/ do
-  pending
+  $browser.div(:id, "edit_settings").
+    text_field(:name => "steps_location").
+      value.should == ""
 end
 
 Then /^the steps location box should be marked as required$/ do
-  pending
+  $browser.div(:id, "edit_settings").
+    span(:id, "steps_location_required").visible?.should be_true
 end
 
 Given /^the steps location setting is set to a directory that does not exist$/ do
-  pending
+  set_steps_location_to "fictional/location"
 end
 
-Then /^an error message should be displayed with text$/ do |string|
-  pending
+Then /^an error message should be displayed with text$/ do |error_message|
+  error_message_div = $browser.div(:id, "error_message")
+  error_message_div.class_name.should == ".ui-state-error"
+  error_message_dive.text.should == error_message
+end
+
+def set_steps_location_to(value)
+  setting = Setting.find_by_name("steps_location")
+  if not setting
+    setting = Setting.new
+    setting.name = "steps_location"
+  end  
+
+  setting.value = value
+  setting.save
 end
 
 
