@@ -178,3 +178,28 @@ Feature: Scenarios
         """
         The steps location setting refers to a path that does not exist or is not a directory. Please change the setting and try again.
         """
+        
+    Scenario: Setting dialog should display setting value
+      Given the steps location setting is set to "tmp/steps"
+      And home is displayed
+      When edit settings is clicked
+      Then the settings dialog should be visible
+      And the steps location box should contain "tmp/steps"
+      
+    Scenario: Setting dialog cancel button should not change value
+      Given the steps location is set to "tmp/steps"
+      And home is displayed
+      And edit settings is clicked
+      And the settings dialog should be visible
+      And the steps location setting value is set to "test"
+      When cancel is clicked
+      Then the steps location should be "tmp/steps"
+      
+    Scenario: Setting dialog save settings button should change value
+      Given the steps location is set to "tmp/steps"
+      And home is displayed
+      And edit settings is clicked
+      And the settings dialog should be visible
+      And the steps location setting value is set to "test"
+      When save settings is clicked
+      Then the steps location should be "test"      

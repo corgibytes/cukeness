@@ -216,6 +216,35 @@ def set_steps_location_to(value)
   setting.save
 end
 
+Given /^the steps location setting is set to "([^\"]*)"$/ do |arg1|
+  pending
+end
+
+Then /^the steps location box should contain "([^\"]*)"$/ do |arg1|
+  pending
+end
+
+Given /^the steps location is set to "([^\"]*)"$/ do |arg1|
+  pending
+end
+
+Given /^edit settings is clicked$/ do
+  pending
+end
+
+Given /^the steps location setting value is set to "([^\"]*)"$/ do |arg1|
+  pending
+end
+
+Then /^the steps location should be "([^\"]*)"$/ do |arg1|
+  pending
+end
+
+When /^save settings is clicked$/ do
+  pending
+end
+
+
 
 
 
