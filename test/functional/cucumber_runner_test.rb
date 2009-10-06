@@ -3,7 +3,7 @@ require 'test_helper'
 class CucumberRunnerTest < ActiveSupport::TestCase
   test "run should invoke cucumber command and return output" do
     test_dir = "/tmp/runner_test"
-    feature_file_name = test_dir + "/generated.feature"
+    feature_file_name = test_dir + "/generated_1.feature"
     steps_file_name = test_dir + "/test_steps.rb"
 
     if not File.exists? test_dir

@@ -1,8 +1,12 @@
 class HomeController < ApplicationController
   def index
     if request.post? 
-      feature_file_generator.generate
-      @cucumber_results = cucumber_runner.run
+      if File.directory? steps_dir
+        feature_file_generator.generate
+        @cucumber_results = cucumber_runner.run
+      else
+        @error_message = "The steps location setting refers to a path that does not exist or is not a directory. Please change the setting and try again."
+      end
     else
       @steps_location_exists = steps_location_setting != nil
     end
@@ -46,5 +50,9 @@ class HomeController < ApplicationController
   
   def steps_location_exists
     @steps_location_exists
+  end
+  
+  def error_message
+    @error_message
   end
 end
