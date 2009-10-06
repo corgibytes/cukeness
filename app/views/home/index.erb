@@ -101,6 +101,12 @@
 <button id="add_scenario" class="fg-button ui-state-default ui-corner-all">Add Scenario</button>
 <button id="run_scenarios" class="fg-button ui-state-default ui-corner-all">Run Scenarios</button>
 
+<% if @error_message %>
+<div id="error_message" class=".ui-state-error">
+  <%= @error_message %>
+</div>
+<% end %>
+
 <% form_tag ({:controller => :home, :action => :index}, :id => "run_all_form") do %>
 <% end %>
 
@@ -124,6 +130,9 @@
 </div>
 
 <div id="edit_settings" title="Edit Settings">
+  <label for="steps_location">Steps Location:</label><br/>
+  <%= text_field_tag :steps_location, "", :class => "text "%>
+  <span id="steps_location_required" class="required">*</span>
 </div>
 
 <% if @cucumber_results %>

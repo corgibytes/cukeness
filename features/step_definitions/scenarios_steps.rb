@@ -187,8 +187,12 @@ Then /^the steps location box should be empty$/ do
 end
 
 Then /^the steps location box should be marked as required$/ do
-  $browser.div(:id, "edit_settings").
-    span(:id, "steps_location_required").visible?.should be_true
+  steps_location_required = $browser.div(:id, "edit_settings").
+    span(:id, "steps_location_required")
+  
+  steps_location_required.visible?.should be_true
+  steps_location_required.class_name.should == "required"
+  steps_location_required.text.should == "*"
 end
 
 Given /^the steps location setting is set to a directory that does not exist$/ do
@@ -198,7 +202,7 @@ end
 Then /^an error message should be displayed with text$/ do |error_message|
   error_message_div = $browser.div(:id, "error_message")
   error_message_div.class_name.should == ".ui-state-error"
-  error_message_dive.text.should == error_message
+  error_message_div.text.should == error_message
 end
 
 def set_steps_location_to(value)
