@@ -52,6 +52,9 @@
     <PackageReference Include="Nancy">
       <Version>1.4.4</Version>
     </PackageReference>
+    <PackageReference Include="Nancy.Hosting.Self">
+      <Version>1.4.1</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
