@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cukeness", "Cukeness\Cukeness.csproj", "{54E54ABD-1E67-4068-9443-B9D61F221FCA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cukeness.Test", "Cukeness.Test\Cukeness.Test.csproj", "{DAA58556-C4F1-4F81-988B-35D7A029BA63}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{54E54ABD-1E67-4068-9443-B9D61F221FCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54E54ABD-1E67-4068-9443-B9D61F221FCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54E54ABD-1E67-4068-9443-B9D61F221FCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAA58556-C4F1-4F81-988B-35D7A029BA63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAA58556-C4F1-4F81-988B-35D7A029BA63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAA58556-C4F1-4F81-988B-35D7A029BA63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAA58556-C4F1-4F81-988B-35D7A029BA63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
