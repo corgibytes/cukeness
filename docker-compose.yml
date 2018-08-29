@@ -7,3 +7,8 @@ services:
       dockerfile: ./Dockerfile
     volumes:
       - ./api:/api
+    ports:
+      - "80:80"
+      - "443:443"
+    entrypoint: /api/docker-entrypoint.sh
+    command: "dotnet run --project Cukeness.Api/Cukeness.Api.csproj"
