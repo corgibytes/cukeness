@@ -14,6 +14,9 @@ namespace server
         }
     }
 
+    // Sample server code based on sample at 
+    // https://docs.microsoft.com/en-us/dotnet/framework/network-programming/asynchronous-server-socket-example
+
     public class StateObject {
         public Socket workSocket = null;
         public const int BufferSize = 1024;
