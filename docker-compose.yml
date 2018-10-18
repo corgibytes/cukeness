@@ -12,7 +12,7 @@ services:
       - "443:443"
     entrypoint: /api/docker-entrypoint.sh
     command: "dotnet run --project Cukeness.Api/Cukeness.Api.csproj"
-  
+
   runner:
     build:
       context: ./runner
@@ -20,13 +20,11 @@ services:
     volumes:
       - ./features:/work/features
       - ./runner/configuration:/work/features/configuration
-    
+
   step-server:
     build:
       context: ./step-server
       dockerfile: ./Dockerfile
     volumes:
       - ./step-server:/step-server
-    command: "dotnet run --project /step-server/server/server.csproj"
-
-    
+    command: "dotnet run --project /step-server/StepServer/StepServer.csproj"
