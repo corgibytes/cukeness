@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using Newtonsoft.Json.Linq;
 
 namespace server
 {
@@ -14,7 +15,7 @@ namespace server
         }
     }
 
-    // Sample server code based on sample at 
+    // Sample server code based on sample at
     // https://docs.microsoft.com/en-us/dotnet/framework/network-programming/asynchronous-server-socket-example
 
     public class StateObject {
@@ -78,6 +79,15 @@ namespace server
             );
         }
 
+        public static void ProcessStepMatches(String request) {
+          Console.WriteLine($"Ready to process step matches for {request}");
+
+          var requestData = JObject.Parse(request);
+          var nameToMatch = requestData["name_to_match"].Value<string>();
+
+          Console.WriteLine($"Looking for a match for {nameToMatch}");
+        }
+
         public static void ReadCallback(IAsyncResult ar) {
             String content = String.Empty;
 
@@ -97,6 +107,13 @@ namespace server
                         $"Read {content.Length} bytes from socket. \n" +
                         $"Data : {content}"
                     );
+
+                    var message = JArray.Parse(content);
+                    var command = message[0].Value<String>();
+                    if (command == "step_matches") {
+                      ProcessStepMatches(message[1].ToString());
+                    }
+
                     Send(handler, content);
                 } else {
                     handler.BeginReceive(
@@ -111,7 +128,7 @@ namespace server
             byte[] rawData = Encoding.UTF8.GetBytes(data);
 
             handler.BeginSend(
-                rawData, 0, rawData.Length, 0, 
+                rawData, 0, rawData.Length, 0,
                 new AsyncCallback(SendCallback), handler
             );
         }
