@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StepServer", "StepServer\StepServer.csproj", "{84289962-CD77-4B52-9E01-CBDB84B67AF6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cukeness.Specs", "Cukeness.Specs\Cukeness.Specs.csproj", "{6C9A8616-85DB-474D-B479-3D9F760E7A81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StepServer.Test", "StepServer.Test\StepServer.Test.csproj", "{2DDB0E0A-BE11-4C31-A64F-6E9707E96163}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{84289962-CD77-4B52-9E01-CBDB84B67AF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84289962-CD77-4B52-9E01-CBDB84B67AF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84289962-CD77-4B52-9E01-CBDB84B67AF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84289962-CD77-4B52-9E01-CBDB84B67AF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C9A8616-85DB-474D-B479-3D9F760E7A81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C9A8616-85DB-474D-B479-3D9F760E7A81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C9A8616-85DB-474D-B479-3D9F760E7A81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C9A8616-85DB-474D-B479-3D9F760E7A81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DDB0E0A-BE11-4C31-A64F-6E9707E96163}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DDB0E0A-BE11-4C31-A64F-6E9707E96163}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DDB0E0A-BE11-4C31-A64F-6E9707E96163}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DDB0E0A-BE11-4C31-A64F-6E9707E96163}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
