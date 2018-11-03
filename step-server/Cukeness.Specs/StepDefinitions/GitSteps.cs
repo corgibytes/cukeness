@@ -1,10 +1,10 @@
 using System;
 using TechTalk.SpecFlow;
 
-namespace Cukeness.Specs.StepDefinitions 
+namespace Cukeness.Specs.StepDefinitions
 {
     [Binding]
-    public class GitSteps 
+    public class GitSteps
     {
         //private readonly CukenessDriver _driver;
 
