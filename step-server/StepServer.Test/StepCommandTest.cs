@@ -37,6 +37,16 @@ namespace StepServer.Test
       );
     }
 
+    [TestMethod]
+    public void BeginScenario()
+    {
+      var stepCommand = StepCommandFactory.Create(@"[""begin_scenario""]");
+      var response = stepCommand.Execute();
+      response.Succeeded.Should().Be(true);
+      response.Payload.Should().BeNull();
+      response.ToString().Should().Be(@"[""success""]");
+    }
+
     private static StepCommandFactory StepCommandFactory
     {
       get
