@@ -26,6 +26,10 @@ namespace StepServer
           parsedMessage[1].ToString()
         );
       }
+      else if (command == "begin_scenario")
+      {
+        result = new BeginScenarioCommand();
+      }
 
       return result;
     }
