@@ -21,7 +21,7 @@ namespace StepServer.Test
     }
 
     [TestMethod]
-    public void SimpleMatch()
+    public void StepMatches()
     {
       var stepCommand = StepCommandFactory.Create(
         @"[""step_matches"",{""name_to_match"":""there is an organization " +
