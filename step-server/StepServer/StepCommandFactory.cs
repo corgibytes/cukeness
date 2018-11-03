@@ -30,6 +30,10 @@ namespace StepServer
       {
         result = new BeginScenarioCommand();
       }
+      else if (command == "end_scenario")
+      {
+        result = new EndScenarioCommand();
+      }
 
       return result;
     }
