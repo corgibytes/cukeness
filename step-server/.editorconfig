@@ -63,3 +63,5 @@ csharp_new_line_before_catch = true
 csharp_new_line_before_finally = true
 csharp_new_line_before_members_in_object_initializers = true
 csharp_new_line_before_members_in_anonymous_types = true
+
+resharper_convert_if_statement_to_return_statement_highlighting = do_not_show
