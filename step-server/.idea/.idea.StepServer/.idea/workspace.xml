@@ -2,11 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="878462a9-afe1-4d4d-8f17-dc89d390f532" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.StepServer/.idea/contentModel.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.StepServer/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.StepServer/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.StepServer/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.StepServer/riderModule.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/StepServer.Test/StepCommandTest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/StepServer/IStepCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/StepServer/IStepResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/StepServer/StepCommandFactory.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/StepServer/StepMatchesCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/StepServer/StepMatchesResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.StepServer/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.StepServer/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.StepServer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.StepServer/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.StepServer/riderModule.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.StepServer/riderModule.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cukeness.Specs/StepDefinitions/GitSteps.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cukeness.Specs/StepDefinitions/GitSteps.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StepServer.Test/StepServer.Test.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/StepServer.Test/StepServer.Test.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StepServer.Test/UnitTest1.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StepServer.sln" beforeDir="false" afterPath="$PROJECT_DIR$/StepServer.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StepServer/StepServer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/StepServer/StepServer.csproj" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,28 +27,37 @@
     <session id="159868566">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.4" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.open.time.6" value="1" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="cs" value="3" />
+          <entry key="Config" value="1" />
+          <entry key="cs" value="11" />
+          <entry key="editorconfig" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="C#" value="3" />
+          <entry key="C#" value="11" />
+          <entry key="Config" value="1" />
+          <entry key="PLAIN_TEXT" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cs" value="43" />
+          <entry key="cs" value="3932" />
+          <entry key="editorconfig" value="179" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="C#" value="43" />
+          <entry key="C#" value="3932" />
+          <entry key="PLAIN_TEXT" value="179" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts" />
@@ -47,65 +65,74 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cukeness.Specs/StepDefinitions/GitSteps.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="19" column="48" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
-              <folding>
-                <marker date="1541094920002" expanded="true" signature="6:38" ph="..." />
-                <marker date="1541094920002" expanded="true" signature="81:648" ph="{...}" />
-                <marker date="1541094920002" expanded="true" signature="124:646" ph="{...}" />
-                <marker date="1541094920002" expanded="true" signature="139:339" ph="/* private readonly CukenessDriver _driver; ... */" />
-                <marker date="1541094920002" expanded="true" signature="571:640" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/StepServer/Program.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="551">
-              <caret line="113" column="27" selection-start-line="113" selection-start-column="27" selection-end-line="113" selection-end-column="27" />
-              <folding>
-                <marker date="1539888139923" expanded="false" signature="6:128" ph="..." />
-                <marker date="1539888139923" expanded="true" signature="150:4808" ph="{...}" />
-                <marker date="1539888139923" expanded="true" signature="170:292" ph="{...}" />
-                <marker date="1539888139923" expanded="true" signature="216:286" ph="{...}" />
-                <marker date="1539888139923" expanded="true" signature="298:450" ph="/* Sample server code based on sample at ... */" />
-                <marker date="1539888139923" expanded="true" signature="481:688" ph="{...}" />
-                <marker date="1539888139923" expanded="true" signature="727:4806" ph="{...}" />
-                <marker date="1539888139923" expanded="true" signature="845:856" ph="{...}" />
-                <marker date="1539888139923" expanded="true" signature="902:1936" ph="{...}" />
-                <marker date="1539888139923" expanded="true" signature="1163:1749" ph="{...}" />
-                <marker date="1539888139923" expanded="true" signature="1279:1735" ph="{...}" />
-                <marker date="1539888139923" expanded="true" signature="1770:1834" ph="{...}" />
-                <marker date="1539888139923" expanded="true" signature="1997:2385" ph="{...}" />
-                <marker date="1539888139923" expanded="true" signature="2449:2736" ph="{...}" />
-                <marker date="1539888139923" expanded="true" signature="2795:4018" ph="{...}" />
-                <marker date="1539888139923" expanded="true" signature="3034:4008" ph="{...}" />
-                <marker date="1539888139923" expanded="true" signature="3267:3770" ph="{...}" />
-                <marker date="1539888139923" expanded="true" signature="3619:3707" ph="{...}" />
-                <marker date="1539888139923" expanded="true" signature="4081:4302" ph="{...}" />
-                <marker date="1539888139923" expanded="true" signature="4361:4800" ph="{...}" />
-                <marker date="1539888139923" expanded="true" signature="4379:4705" ph="{...}" />
-                <marker date="1539888139923" expanded="true" signature="4726:4790" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/StepServer.Test/UnitTest1.cs">
+        <entry file="file://$PROJECT_DIR$/StepServer.Test/StepCommandTest.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="506">
+              <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
               <folding>
-                <marker date="1539888056921" expanded="true" signature="6:26" ph="..." />
-                <marker date="1539888056921" expanded="true" signature="53:160" ph="{...}" />
-                <marker date="1539888056921" expanded="true" signature="82:158" ph="{...}" />
-                <marker date="1539888056921" expanded="true" signature="131:152" ph="{...}" />
+                <marker date="1541268902534" expanded="true" signature="6:131" ph="..." />
+                <marker date="1541268902534" expanded="true" signature="158:1223" ph="{...}" />
+                <marker date="1541268902534" expanded="true" signature="205:1221" ph="{...}" />
+                <marker date="1541268902534" expanded="true" signature="253:497" ph="{...}" />
+                <marker date="1541268902534" expanded="true" signature="269:491" ph="{...}" />
+                <marker date="1541268902534" expanded="true" signature="545:1217" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.editorconfig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1298">
+              <caret line="59" column="39" lean-forward="true" selection-start-line="59" selection-start-column="39" selection-end-line="59" selection-end-column="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/StepServer/StepMatchesResponse.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="440">
+              <caret line="20" column="34" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
+              <folding>
+                <marker date="1541268556819" expanded="true" signature="6:64" ph="..." />
+                <marker date="1541268556819" expanded="true" signature="86:1485" ph="{...}" />
+                <marker date="1541268556819" expanded="true" signature="138:1483" ph="{...}" />
+                <marker date="1541268556819" expanded="true" signature="257:342" ph="{...}" />
+                <marker date="1541268556819" expanded="true" signature="474:644" ph="{...}" />
+                <marker date="1541268556819" expanded="true" signature="490:638" ph="{...}" />
+                <marker date="1541268556819" expanded="true" signature="521:569" ph="{...}" />
+                <marker date="1541268556819" expanded="true" signature="582:630" ph="{...}" />
+                <marker date="1541268556819" expanded="true" signature="683:919" ph="{...}" />
+                <marker date="1541268556819" expanded="true" signature="958:1361" ph="{...}" />
+                <marker date="1541268556819" expanded="true" signature="974:1355" ph="{...}" />
+                <marker date="1541268556819" expanded="true" signature="1063:1122" ph="{...}" />
+                <marker date="1541268556819" expanded="true" signature="1191:1257" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/D32DB49E-5E34-4072-9DA3-1845C03DDC3A/e0/c5a45f5c/JToken.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="356">
+              <caret line="602" column="27" selection-start-line="602" selection-start-column="27" selection-end-line="602" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/StepServer/IStepResponse.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
+              <folding>
+                <marker date="1541097570050" expanded="true" signature="49:150" ph="{...}" />
+                <marker date="1541097570050" expanded="true" signature="84:148" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -113,18 +140,42 @@
       </file>
     </leaf>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>&quot;</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>&quot;&quot;</replace>
+    </replaceStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/StepServer/StepMatchesResponse.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/.config/NuGet/NuGet.Config" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/StepServer/StepCommandFactory.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Cukeness.Specs/StepDefinitions/GitSteps.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/StepServer.Test/UnitTest1.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/StepServer/IStepCommand.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/D32DB49E-5E34-4072-9DA3-1845C03DDC3A/e0/c5a45f5c/JToken.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/StepServer.Test/StepCommandTest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/StepServer/IStepResponse.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/StepServer/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/StepServer/StepMatchesCommand.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/StepServer.Test/UnitTest1.cs" />
+        <option value="$PROJECT_DIR$/StepServer/IStepCommand.cs" />
+        <option value="$PROJECT_DIR$/StepServer/IStepResponse.cs" />
+        <option value="$PROJECT_DIR$/StepServer/StepCommandFactory.cs" />
+        <option value="$PROJECT_DIR$/StepServer/StepMatchResponse.cs" />
+        <option value="$PROJECT_DIR$/.editorconfig" />
+        <option value="$PROJECT_DIR$/StepServer/StepMatchesCommand.cs" />
+        <option value="$PROJECT_DIR$/StepServer/StepMatchesResponse.cs" />
         <option value="$PROJECT_DIR$/Cukeness.Specs/StepDefinitions/GitSteps.cs" />
+        <option value="$PROJECT_DIR$/StepServer.Test/StepCommandTest.cs" />
       </list>
     </option>
   </component>
@@ -135,10 +186,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="405" />
-    <option name="y" value="63" />
-    <option name="width" value="1622" />
-    <option name="height" value="1190" />
+    <option name="x" value="3008" />
+    <option name="y" value="23" />
+    <option name="width" value="1504" />
+    <option name="height" value="1669" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -154,27 +205,6 @@
               <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
               <item name="StepServer" type="24d0babc:SolutionExplorerModelNode" />
             </path>
-            <path>
-              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
-              <item name="StepServer" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="Cukeness.Specs" type="24d0babc:SolutionExplorerModelNode" />
-            </path>
-            <path>
-              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
-              <item name="StepServer" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="Cukeness.Specs" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="StepDefinitions" type="24d0babc:SolutionExplorerModelNode" />
-            </path>
-            <path>
-              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
-              <item name="StepServer" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="StepServer" type="24d0babc:SolutionExplorerModelNode" />
-            </path>
-            <path>
-              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
-              <item name="StepServer" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="StepServer.Test" type="24d0babc:SolutionExplorerModelNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -185,6 +215,10 @@
   <component name="PropertiesComponent">
     <property name="Rider.DefaultBreakpoints.AreToggled" value="true" />
     <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
+    <property name="RiderNuGetCacheManager.AutoClear.global-packages" value="2" />
+    <property name="RiderNuGetCacheManager.AutoClear.http-cache" value="2" />
+    <property name="RiderNuGetCacheManager.AutoClear.packages-cache" value="2" />
+    <property name="RiderNuGetCacheManager.AutoClear.temp" value="1" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/StepServer.Test/StepServer.Test.csproj" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
@@ -201,21 +235,26 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected=".NET Project.Default">
+  <component name="RunManager" selected="c554747c-75a5-4869-8b58-70702f5ec4ed">
     <configuration name="Default" type="DotNetProject" factoryName=".NET Project">
-      <option name="EXE_PATH" value="" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/StepServer/bin/Debug/netcoreapp2.1/StepServer.dll" />
       <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/StepServer" />
       <option name="PASS_PARENT_ENVS" value="1" />
+      <envs>
+        <env name="ASPNETCORE_ENVIRONMENT" value="Development" />
+        <env name="ASPNETCORE_URLS" value="http://localhost:5000" />
+      </envs>
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="USE_MONO" value="0" />
       <option name="RUNTIME_ARGUMENTS" value="" />
-      <option name="PROJECT_PATH" value="" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/StepServer/StepServer.csproj" />
       <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
       <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
       <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
-      <option name="PROJECT_KIND" value="None" />
-      <option name="PROJECT_TFM" value="" />
+      <option name="PROJECT_KIND" value="DotNetCore" />
+      <option name="PROJECT_TFM" value=".NETCoreApp,Version=v2.1" />
+      <browser url="http://localhost:5000" />
       <method v="2">
         <option name="Build" enabled="true" />
       </method>
@@ -234,12 +273,14 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1541094048858</updated>
-      <workItem from="1541094052305" duration="1709000" />
+      <workItem from="1541094052305" duration="10304000" />
+      <workItem from="1541172274631" duration="647000" />
+      <workItem from="1541266010450" duration="2803000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1709000" />
+    <option name="totallyTimeSpent" value="13754000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -251,37 +292,38 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="405" y="63" width="1622" height="1190" extended-state="0" />
+    <frame x="3008" y="23" width="1504" height="1669" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21455696" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2373461" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="NuGet" weight="0.32929516" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Unit Tests" visible="true" weight="0.32969034" />
-      <window_info anchor="bottom" id="Terminal" weight="0.2723133" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Build" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32974428" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39973083" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Errors In Solution" />
-      <window_info anchor="right" id="Database" />
+      <window_info anchor="bottom" id="NuGet" order="7" weight="0.32847178" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
+      <window_info active="true" anchor="bottom" id="Unit Tests" order="11" visible="true" weight="0.30691186" />
+      <window_info anchor="bottom" id="Terminal" order="12" weight="0.2720355" />
+      <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" />
+      <window_info anchor="bottom" id="Build" order="14" weight="0.32783768" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Errors In Solution" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="UnityProjectConfiguration" hasMinimizedUI="null" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -296,27 +338,116 @@
       </breakpoints>
     </breakpoint-manager>
   </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>group == match</expression-string>
+        <language-id>C#</language-id>
+        <custom-info>RiderImportsList:</custom-info>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Cukeness.Specs/StepDefinitions/GitSteps.cs">
+    <entry file="file://$PROJECT_DIR$/StepServer/IStepCommand.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" column="48" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
+        <state relative-caret-position="76">
+          <caret line="4" column="9" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StepServer/StepCommandFactory.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.config/NuGet/NuGet.Config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="5" column="16" lean-forward="true" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/D32DB49E-5E34-4072-9DA3-1845C03DDC3A/e0/c5a45f5c/JToken.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="602" column="27" selection-start-line="602" selection-start-column="27" selection-end-line="602" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StepServer/IStepResponse.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
           <folding>
-            <marker date="1541094920002" expanded="true" signature="6:38" ph="..." />
-            <marker date="1541094920002" expanded="true" signature="81:648" ph="{...}" />
-            <marker date="1541094920002" expanded="true" signature="124:646" ph="{...}" />
-            <marker date="1541094920002" expanded="true" signature="139:339" ph="/* private readonly CukenessDriver _driver; ... */" />
-            <marker date="1541094920002" expanded="true" signature="571:640" ph="{...}" />
+            <marker date="1541097570050" expanded="true" signature="49:150" ph="{...}" />
+            <marker date="1541097570050" expanded="true" signature="84:148" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StepServer/StepMatchesCommand.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="51" column="48" lean-forward="true" selection-start-line="51" selection-start-column="48" selection-end-line="51" selection-end-column="48" />
+          <folding>
+            <marker date="1541268536208" expanded="false" signature="6:185" ph="..." />
+            <marker date="1541268536208" expanded="true" signature="207:2003" ph="{...}" />
+            <marker date="1541268536208" expanded="true" signature="257:2001" ph="{...}" />
+            <marker date="1541268536208" expanded="true" signature="358:512" ph="{...}" />
+            <marker date="1541268536208" expanded="true" signature="374:506" ph="{...}" />
+            <marker date="1541268536208" expanded="true" signature="583:659" ph="{...}" />
+            <marker date="1541268536208" expanded="true" signature="695:1997" ph="{...}" />
+            <marker date="1541268536208" expanded="true" signature="833:1871" ph="{...}" />
+            <marker date="1541268536208" expanded="true" signature="904:1863" ph="{...}" />
+            <marker date="1541268536208" expanded="true" signature="966:1853" ph="{...}" />
+            <marker date="1541268536208" expanded="true" signature="1041:1841" ph="{...}" />
+            <marker date="1541268536208" expanded="true" signature="1122:1827" ph="{...}" />
+            <marker date="1541268536208" expanded="true" signature="1367:1811" ph="{...}" />
+            <marker date="1541268536208" expanded="true" signature="1488:1662" ph="{...}" />
+            <marker date="1541268536208" expanded="true" signature="1548:1642" ph="{...}" />
+            <marker date="1541268536208" expanded="true" signature="1900:1967" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.editorconfig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1298">
+          <caret line="59" column="39" lean-forward="true" selection-start-line="59" selection-start-column="39" selection-end-line="59" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StepServer/StepMatchesResponse.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="20" column="34" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
+          <folding>
+            <marker date="1541268556819" expanded="true" signature="6:64" ph="..." />
+            <marker date="1541268556819" expanded="true" signature="86:1485" ph="{...}" />
+            <marker date="1541268556819" expanded="true" signature="138:1483" ph="{...}" />
+            <marker date="1541268556819" expanded="true" signature="257:342" ph="{...}" />
+            <marker date="1541268556819" expanded="true" signature="474:644" ph="{...}" />
+            <marker date="1541268556819" expanded="true" signature="490:638" ph="{...}" />
+            <marker date="1541268556819" expanded="true" signature="521:569" ph="{...}" />
+            <marker date="1541268556819" expanded="true" signature="582:630" ph="{...}" />
+            <marker date="1541268556819" expanded="true" signature="683:919" ph="{...}" />
+            <marker date="1541268556819" expanded="true" signature="958:1361" ph="{...}" />
+            <marker date="1541268556819" expanded="true" signature="974:1355" ph="{...}" />
+            <marker date="1541268556819" expanded="true" signature="1063:1122" ph="{...}" />
+            <marker date="1541268556819" expanded="true" signature="1191:1257" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/StepServer/Program.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="113" column="27" selection-start-line="113" selection-start-column="27" selection-end-line="113" selection-end-column="27" />
+        <state relative-caret-position="462">
+          <caret line="21" column="40" lean-forward="true" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
           <folding>
-            <marker date="1539888139923" expanded="false" signature="6:128" ph="..." />
+            <marker date="1539888139923" expanded="true" signature="6:128" ph="..." />
             <marker date="1539888139923" expanded="true" signature="150:4808" ph="{...}" />
             <marker date="1539888139923" expanded="true" signature="170:292" ph="{...}" />
             <marker date="1539888139923" expanded="true" signature="216:286" ph="{...}" />
@@ -342,14 +473,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/StepServer.Test/UnitTest1.cs">
+    <entry file="file://$PROJECT_DIR$/Cukeness.Specs/StepDefinitions/GitSteps.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="418">
+          <caret line="20" column="1" lean-forward="true" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
           <folding>
-            <marker date="1539888056921" expanded="true" signature="6:26" ph="..." />
-            <marker date="1539888056921" expanded="true" signature="53:160" ph="{...}" />
-            <marker date="1539888056921" expanded="true" signature="82:158" ph="{...}" />
-            <marker date="1539888056921" expanded="true" signature="131:152" ph="{...}" />
+            <marker date="1541268764937" expanded="false" signature="6:38" ph="..." />
+            <marker date="1541268764937" expanded="true" signature="80:489" ph="{...}" />
+            <marker date="1541268764937" expanded="true" signature="122:487" ph="{...}" />
+            <marker date="1541268764937" expanded="true" signature="137:263" ph="[...]" />
+            <marker date="1541268764937" expanded="true" signature="412:481" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StepServer.Test/StepCommandTest.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+          <folding>
+            <marker date="1541268902534" expanded="true" signature="6:131" ph="..." />
+            <marker date="1541268902534" expanded="true" signature="158:1223" ph="{...}" />
+            <marker date="1541268902534" expanded="true" signature="205:1221" ph="{...}" />
+            <marker date="1541268902534" expanded="true" signature="253:497" ph="{...}" />
+            <marker date="1541268902534" expanded="true" signature="269:491" ph="{...}" />
+            <marker date="1541268902534" expanded="true" signature="545:1217" ph="{...}" />
           </folding>
         </state>
       </provider>
