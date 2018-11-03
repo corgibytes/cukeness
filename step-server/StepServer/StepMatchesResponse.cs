@@ -4,7 +4,7 @@ using Newtonsoft.Json.Linq;
 
 namespace StepServer
 {
-  public class StepMatchesResponse: IStepResponse
+  public class StepMatchesResponse: StepResponseBase
   {
 
     public StepMatchesResponse(
@@ -18,37 +18,11 @@ namespace StepServer
       MatchId = matchId;
     }
 
-    public bool Succeeded { get; }
     public string[] Args { get; }
     public string MatchId { get; }
 
-    private string Status
-    {
-      get
-      {
-        if (Succeeded)
-        {
-          return "success";
-        }
-        else
-        {
-          return "failure";
-        }
-      }
-    }
-
-    public override string ToString()
-    {
-      var result = new JArray();
-      var status = JValue.CreateString(Status);
-
-      result.Add(status);
-      result.Add(UnformattedPayload);
-
-      return result.ToString(Formatting.None, Array.Empty<JsonConverter>());
-    }
-
-    private JArray UnformattedPayload
+    protected override bool HasPayload => true;
+    protected override JArray UnformattedPayload
     {
       get
       {
@@ -71,9 +45,5 @@ namespace StepServer
         return messages;
       }
     }
-
-    public string Payload => UnformattedPayload.ToString(
-      Formatting.None, Array.Empty<JsonConverter>()
-    );
   }
 }

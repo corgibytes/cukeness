@@ -1,13 +1,23 @@
+using System;
+using Newtonsoft.Json.Linq;
+
 namespace StepServer
 {
-  public class SuccessResponse: IStepResponse
+  public class SuccessResponse: StepResponseBase
   {
-    public bool Succeeded => true;
-    public string Payload => null;
-
-    public override string ToString()
+    public SuccessResponse()
     {
-      return base.ToString();
+      Succeeded = true;
+    }
+
+    protected override bool HasPayload => false;
+
+    protected override JArray UnformattedPayload
+    {
+      get
+      {
+        throw new NotImplementedException();
+      }
     }
   }
 }
