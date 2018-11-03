@@ -8,6 +8,7 @@ using Newtonsoft.Json.Linq;
 
 namespace StepServer
 {
+  [StepCommand("step_matches", ReceivesPayload = true)]
   public class StepMatchesCommand: IStepCommand
   {
     private Assembly _stepsAssembly;
