@@ -23,15 +23,11 @@ namespace StepServer.Test
     [TestMethod]
     public void SimpleMatch()
     {
-      var stepsAssembly = Assembly.LoadFile(
-        Path.Combine(AssemblyDirectory, "Cukeness.Specs.dll")
-      );
-
-      var command = new StepCommandFactory(stepsAssembly).Create(
+      var stepCommand = StepCommandFactory.Create(
         @"[""step_matches"",{""name_to_match"":""there is an organization " +
         @"named \""git\"" with a project named \""interactions\""""}]"
       );
-      var response = command.Execute();
+      var response = stepCommand.Execute();
       response.Succeeded.Should().Be(true);
       response.Payload.Should().Be(
         @"[{""id"":""1"",""args"":[""git"",""interactions""]}]"
@@ -39,6 +35,19 @@ namespace StepServer.Test
       response.ToString().Should().Be(
         @"[""success"",[{""id"":""1"",""args"":[""git"",""interactions""]}]]"
       );
+    }
+
+    private static StepCommandFactory StepCommandFactory
+    {
+      get
+      {
+        var stepsAssembly = Assembly.LoadFile(
+          Path.Combine(AssemblyDirectory, "Cukeness.Specs.dll")
+        );
+
+        var stepCommandFactory = new StepCommandFactory(stepsAssembly);
+        return stepCommandFactory;
+      }
     }
   }
 }
