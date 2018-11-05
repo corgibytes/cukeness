@@ -57,6 +57,18 @@ namespace StepServer.Test
       response.ToString().Should().Be(@"[""success""]");
     }
 
+    [TestMethod]
+    public void Invoke()
+    {
+      var stepCommand = StepCommandFactory.Create(
+        @"[""invoke"",{""id"":""1"",""args"":[""git"",""interactions""]}"
+      );
+      var response = stepCommand.Execute();
+      response.Succeeded.Should().Be(true);
+      response.Payload.Should().BeNull();
+      response.ToString().Should().Be(@"[""success""]");
+    }
+
     private static StepCommandFactory StepCommandFactory
     {
       get
