@@ -33,16 +33,17 @@ namespace StepServer
     {
       IStepResponse response = null;
 
-      // For each class in the assembly
       foreach (var type in _stepsAssembly.GetTypes())
       {
         if (type.IsPublic && type.IsClass && !type.IsAbstract)
         {
           foreach (var member in type.GetMembers())
           {
+            var memberIndex = 1;
+
             foreach (var attribute in member.CustomAttributes)
             {
-              if (attribute.AttributeType.Name == "WhenAttribute")
+              if (IsStepAttribute(attribute))
               {
                 var regexPattern = attribute.ConstructorArguments[0];
                 var regex = new Regex(regexPattern.Value.ToString());
@@ -60,11 +61,13 @@ namespace StepServer
                   }
 
                   response = new StepMatchesResponse(
-                    match.Success, "1", args.ToArray()
+                    match.Success, memberIndex.ToString(), args.ToArray()
                   );
                 }
               }
             }
+
+            memberIndex++;
           }
         }
       }
@@ -75,6 +78,15 @@ namespace StepServer
       }
 
       return response;
+    }
+
+    private static bool IsStepAttribute(CustomAttributeData attribute)
+    {
+      return (
+        attribute.AttributeType.Name == "WhenAttribute" ||
+        attribute.AttributeType.Name == "GivenAttribute" ||
+        attribute.AttributeType.Name == "ThenAttribute"
+      );
     }
   }
 }

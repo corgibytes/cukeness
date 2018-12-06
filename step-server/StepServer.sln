@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cukeness.Specs", "Cukeness.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StepServer.Test", "StepServer.Test\StepServer.Test.csproj", "{A753B7BD-434A-4970-8FBB-5557B0A52D0A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StepServer.SpecsFixture", "StepServer.SpecsFixture\StepServer.SpecsFixture.csproj", "{317A345C-42B7-4E99-9696-A9DD14802AF8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{A753B7BD-434A-4970-8FBB-5557B0A52D0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A753B7BD-434A-4970-8FBB-5557B0A52D0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A753B7BD-434A-4970-8FBB-5557B0A52D0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{317A345C-42B7-4E99-9696-A9DD14802AF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{317A345C-42B7-4E99-9696-A9DD14802AF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{317A345C-42B7-4E99-9696-A9DD14802AF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{317A345C-42B7-4E99-9696-A9DD14802AF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

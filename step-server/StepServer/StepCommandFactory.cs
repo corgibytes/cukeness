@@ -54,6 +54,15 @@ namespace StepServer
         var constructor = commandMatch.stepCommandType.GetConstructor(
           new Type[] {typeof(Assembly), typeof(string)}
         );
+
+        if (constructor == null)
+        {
+          throw new Exception(
+            "The step command does not have the expected constructor defined " +
+            "expected to find one with the signature (Assembly, string)"
+           );
+        }
+
         result = (IStepCommand) constructor.Invoke(
           new object[] {_stepsAssembly, parsedMessage[1].ToString()}
         );

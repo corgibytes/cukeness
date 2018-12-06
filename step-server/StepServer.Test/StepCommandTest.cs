@@ -23,7 +23,7 @@ namespace StepServer.Test
     [TestMethod]
     public void StepMatches()
     {
-      var stepCommand = StepCommandFactory.Create(
+      var stepCommand = CukenessStepsCommandFactory.Create(
         @"[""step_matches"",{""name_to_match"":""there is an organization " +
         @"named \""git\"" with a project named \""interactions\""""}]"
       );
@@ -38,9 +38,70 @@ namespace StepServer.Test
     }
 
     [TestMethod]
+    public void StepMatchesGivenWithNoArguments()
+    {
+      var stepCommand = FixtureStepsCommandFactory.Create(
+        @"[""step_matches"",{""name_to_match"":""it passes without arguments""}]"
+      );
+      var response = stepCommand.Execute();
+      response.Succeeded.Should().Be(true);
+      response.Payload.Should().Be(
+        @"[{""id"":""1"",""args"":[]}]"
+      );
+      response.ToString().Should().Be(
+        @"[""success"",[{""id"":""1"",""args"":[]}]]"
+      );
+    }
+
+    [TestMethod]
+    public void StepMatchesWhenWithNoArguments()
+    {
+      Assert.Fail();
+    }
+
+    [TestMethod]
+    public void StepMatchesThenWithNoArguments()
+    {
+      AssertStepMatch("it fails without arguments", "3");
+    }
+
+    private static void AssertStepMatch(string matchExpression, string id)
+    {
+      var stepCommand = FixtureStepsCommandFactory.Create(
+        @"[""step_matches"",{""name_to_match"":""" + matchExpression + @"""}]"
+      );
+      var response = stepCommand.Execute();
+      response.Succeeded.Should().Be(true);
+      response.Payload.Should().Be(
+        @"[{""id"":""" + id + @""",""args"":[]}]"
+      );
+      response.ToString().Should().Be(
+        @"[""success"",[{""id"":""" + id + @""",""args"":[]}]]"
+      );
+    }
+
+    [TestMethod]
+    public void StepMatchesGivenWithAnArgument()
+    {
+      Assert.Fail();
+    }
+
+    [TestMethod]
+    public void StepMatchesThenWithAnArgument()
+    {
+      Assert.Fail();
+    }
+
+    [TestMethod]
+    public void StepMatchesWhenWithAnArgument()
+    {
+      Assert.Fail();
+    }
+
+    [TestMethod]
     public void BeginScenario()
     {
-      var stepCommand = StepCommandFactory.Create(@"[""begin_scenario""]");
+      var stepCommand = CukenessStepsCommandFactory.Create(@"[""begin_scenario""]");
       var response = stepCommand.Execute();
       response.Succeeded.Should().Be(true);
       response.Payload.Should().BeNull();
@@ -50,7 +111,7 @@ namespace StepServer.Test
     [TestMethod]
     public void EndScenario()
     {
-      var stepCommand = StepCommandFactory.Create(@"[""end_scenario""]");
+      var stepCommand = CukenessStepsCommandFactory.Create(@"[""end_scenario""]");
       var response = stepCommand.Execute();
       response.Succeeded.Should().Be(true);
       response.Payload.Should().BeNull();
@@ -58,10 +119,10 @@ namespace StepServer.Test
     }
 
     [TestMethod]
-    public void Invoke()
+    public void InvokePassing()
     {
-      var stepCommand = StepCommandFactory.Create(
-        @"[""invoke"",{""id"":""1"",""args"":[""git"",""interactions""]}"
+      var stepCommand = FixtureStepsCommandFactory.Create(
+        @"[""invoke"",{""id"":""1""}]"
       );
       var response = stepCommand.Execute();
       response.Succeeded.Should().Be(true);
@@ -69,16 +130,73 @@ namespace StepServer.Test
       response.ToString().Should().Be(@"[""success""]");
     }
 
-    private static StepCommandFactory StepCommandFactory
+    [TestMethod]
+    public void InvokePending()
+    {
+      var stepCommand = FixtureStepsCommandFactory.Create(
+        @"[""invoke"",{""id"":""2""]"
+      );
+      var response = stepCommand.Execute();
+      response.Succeeded.Should().Be(true);
+      response.Payload.Should().BeNull();
+      response.ToString().Should().Be(
+        @"[""pending"", " +
+        @"""One or more step definitions are not implemented yet.""]"
+      );
+    }
+
+    [TestMethod]
+    public void InvokeFailing()
+    {
+      var stepCommand = FixtureStepsCommandFactory.Create(
+        @"[""invoke"",{""id"":""3""]"
+      );
+      var response = stepCommand.Execute();
+      response.Succeeded.Should().Be(true);
+      response.Payload.Should().BeNull();
+      response.ToString().Should().Be(
+        @"[""failing"", ""this fails and takes no arguments""]"
+      );
+    }
+
+    [TestMethod]
+    public void InvokePassingWithArgument()
+    {
+      throw new Exception();
+    }
+
+    [TestMethod]
+    public void InvokePendingWithArgument()
+    {
+      throw new Exception();
+    }
+
+    [TestMethod]
+    public void InvokeFailingWithArgument()
+    {
+      throw new Exception();
+    }
+
+    private static StepCommandFactory GetFactoryForAssemblyName(string name)
+    {
+      var stepsAssembly = Assembly.LoadFile(
+        Path.Combine(AssemblyDirectory, name)
+      );
+
+      var stepCommandFactory = new StepCommandFactory(stepsAssembly);
+      return stepCommandFactory;
+    }
+
+    private static StepCommandFactory CukenessStepsCommandFactory
+    {
+      get { return GetFactoryForAssemblyName("Cukeness.Specs.dll"); }
+    }
+
+    private static StepCommandFactory FixtureStepsCommandFactory
     {
       get
       {
-        var stepsAssembly = Assembly.LoadFile(
-          Path.Combine(AssemblyDirectory, "Cukeness.Specs.dll")
-        );
-
-        var stepCommandFactory = new StepCommandFactory(stepsAssembly);
-        return stepCommandFactory;
+        return GetFactoryForAssemblyName("StepServer.SpecsFixture.dll");
       }
     }
   }

@@ -16,6 +16,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Cukeness.Specs\Cukeness.Specs.csproj" />
+      <ProjectReference Include="..\StepServer.SpecsFixture\StepServer.SpecsFixture.csproj" />
       <ProjectReference Include="..\StepServer\StepServer.csproj" />
     </ItemGroup>
 
