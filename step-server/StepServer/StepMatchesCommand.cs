@@ -37,10 +37,10 @@ namespace StepServer
       {
         if (type.IsPublic && type.IsClass && !type.IsAbstract)
         {
+          var memberIndex = 1;
+
           foreach (var member in type.GetMembers())
           {
-            var memberIndex = 1;
-
             foreach (var attribute in member.CustomAttributes)
             {
               if (IsStepAttribute(attribute))

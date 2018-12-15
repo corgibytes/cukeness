@@ -40,23 +40,13 @@ namespace StepServer.Test
     [TestMethod]
     public void StepMatchesGivenWithNoArguments()
     {
-      var stepCommand = FixtureStepsCommandFactory.Create(
-        @"[""step_matches"",{""name_to_match"":""it passes without arguments""}]"
-      );
-      var response = stepCommand.Execute();
-      response.Succeeded.Should().Be(true);
-      response.Payload.Should().Be(
-        @"[{""id"":""1"",""args"":[]}]"
-      );
-      response.ToString().Should().Be(
-        @"[""success"",[{""id"":""1"",""args"":[]}]]"
-      );
+      AssertStepMatch("it passes without arguments", "1");
     }
 
     [TestMethod]
     public void StepMatchesWhenWithNoArguments()
     {
-      Assert.Fail();
+      AssertStepMatch("it is pending without arguments", "2");
     }
 
     [TestMethod]
