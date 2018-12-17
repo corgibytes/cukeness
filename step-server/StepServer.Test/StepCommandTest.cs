@@ -4,6 +4,9 @@ using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 
+// Reference material for this set of tests and what they should be
+// able to handle can be found: https://github.com/cucumber/cucumber-ruby-wire/blob/v0.0.1/features/invoke_message.feature
+
 namespace StepServer.Test
 {
   [TestClass]
