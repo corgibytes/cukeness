@@ -165,8 +165,8 @@ namespace StepServer.Test
         @"[""invoke"",{""id"":""2""}]"
       );
       var response = stepCommand.Execute();
-      response.Succeeded.Should().Be(true);
       response.Payload.Should().BeNull();
+      response.Succeeded.Should().Be(false);
       response.ToString().Should().Be(
         @"[""pending"", " +
         @"""One or more step definitions are not implemented yet.""]"
@@ -180,8 +180,8 @@ namespace StepServer.Test
         @"[""invoke"",{""id"":""3""}]"
       );
       var response = stepCommand.Execute();
-      response.Succeeded.Should().Be(true);
       response.Payload.Should().BeNull();
+      response.Succeeded.Should().Be(false);
       response.ToString().Should().Be(
         @"[""failing"", ""this fails and takes no arguments""]"
       );
