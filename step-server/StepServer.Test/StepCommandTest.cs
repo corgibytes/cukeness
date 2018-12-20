@@ -170,7 +170,7 @@ namespace StepServer.Test
         @"""One or more step definitions are not implemented yet."""
       );
       response.ToString().Should().Be(
-        @"[""pending"", " +
+        @"[""pending""," +
         @"""One or more step definitions are not implemented yet.""]"
       );
     }
