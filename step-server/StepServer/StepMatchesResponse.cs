@@ -22,7 +22,7 @@ namespace StepServer
     public string MatchId { get; }
 
     protected override bool HasPayload => true;
-    protected override JArray UnformattedPayload
+    protected override JToken UnformattedPayload
     {
       get
       {

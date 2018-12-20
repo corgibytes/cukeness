@@ -14,7 +14,7 @@ namespace StepServer
       get { return false; }
     }
 
-    protected override JArray UnformattedPayload
+    protected override JToken UnformattedPayload
     {
       get { return null; }
     }

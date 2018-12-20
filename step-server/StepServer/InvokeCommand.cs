@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json.Linq;
@@ -43,15 +44,22 @@ namespace StepServer
           var ctor = type.GetConstructor(new Type[] { });
           var instance = ctor.Invoke(new object[] { });
 
-          type.InvokeMember(
-            memberToInvoke.Name,
-            BindingFlags.InvokeMethod | BindingFlags.Instance | BindingFlags.Public,
-            null,
-            instance,
-            new object[] {}
-          );
-
-          response = new InvokeSuccessResponse();
+          try
+          {
+            type.InvokeMember(
+              memberToInvoke.Name,
+              BindingFlags.InvokeMethod | BindingFlags.Instance |
+              BindingFlags.Public,
+              null,
+              instance,
+              new object[] { }
+            );
+            response = new InvokeSuccessResponse();
+          }
+          catch (TargetInvocationException error)
+          {
+            response = new InvokeFailureResponse(error.InnerException);
+          }
         }
       }
 

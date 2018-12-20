@@ -12,7 +12,7 @@ namespace StepServer
 
     protected override bool HasPayload => false;
 
-    protected override JArray UnformattedPayload
+    protected override JToken UnformattedPayload
     {
       get
       {

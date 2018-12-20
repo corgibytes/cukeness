@@ -18,13 +18,13 @@ namespace StepServer
         }
         else
         {
-          return "failure";
+          return "fail";
         }
       }
     }
 
     protected abstract bool HasPayload { get; }
-    protected abstract JArray UnformattedPayload { get; }
+    protected abstract JToken UnformattedPayload { get; }
 
     public string Payload
     {
