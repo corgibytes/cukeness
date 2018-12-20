@@ -180,10 +180,12 @@ namespace StepServer.Test
         @"[""invoke"",{""id"":""3""}]"
       );
       var response = stepCommand.Execute();
-      response.Payload.Should().BeNull();
       response.Succeeded.Should().Be(false);
+      response.Payload.Should().Be(
+        @"{""message"":""this fails and takes no arguments"",""exception"":""Exception""}"
+      );
       response.ToString().Should().Be(
-        @"[""failing"", ""this fails and takes no arguments""]"
+        @"[""fail"",{""message"":""this fails and takes no arguments"",""exception"":""Exception""}]"
       );
     }
 
