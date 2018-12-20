@@ -165,8 +165,10 @@ namespace StepServer.Test
         @"[""invoke"",{""id"":""2""}]"
       );
       var response = stepCommand.Execute();
-      response.Payload.Should().BeNull();
       response.Succeeded.Should().Be(false);
+      response.Payload.Should().Be(
+        @"""One or more step definitions are not implemented yet."""
+      );
       response.ToString().Should().Be(
         @"[""pending"", " +
         @"""One or more step definitions are not implemented yet.""]"
