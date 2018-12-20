@@ -162,7 +162,7 @@ namespace StepServer.Test
     public void InvokePending()
     {
       var stepCommand = FixtureStepsCommandFactory.Create(
-        @"[""invoke"",{""id"":""2""]"
+        @"[""invoke"",{""id"":""2""}]"
       );
       var response = stepCommand.Execute();
       response.Succeeded.Should().Be(true);
@@ -177,7 +177,7 @@ namespace StepServer.Test
     public void InvokeFailing()
     {
       var stepCommand = FixtureStepsCommandFactory.Create(
-        @"[""invoke"",{""id"":""3""]"
+        @"[""invoke"",{""id"":""3""}]"
       );
       var response = stepCommand.Execute();
       response.Succeeded.Should().Be(true);
