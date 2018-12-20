@@ -8,7 +8,7 @@ namespace StepServer
   {
     public bool Succeeded { get; protected set; }
 
-    private string Status
+    protected virtual string Status
     {
       get
       {

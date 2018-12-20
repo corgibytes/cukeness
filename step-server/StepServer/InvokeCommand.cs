@@ -4,6 +4,7 @@ using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 
 namespace StepServer
 {
@@ -58,7 +59,16 @@ namespace StepServer
           }
           catch (TargetInvocationException error)
           {
-            response = new InvokeFailureResponse(error.InnerException);
+            var innerExceptionType = error.InnerException.GetType();
+
+            if (innerExceptionType.Name == "PendingStepException")
+            {
+              response = new InvokePendingResponse(error.InnerException);
+            }
+            else
+            {
+              response = new InvokeFailureResponse(error.InnerException);
+            }
           }
         }
       }
