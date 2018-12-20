@@ -3,6 +3,7 @@ using System.IO;
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
+using Newtonsoft.Json;
 
 namespace StepServer.Test
 {
@@ -55,10 +56,15 @@ namespace StepServer.Test
       AssertStepMatch("it fails without arguments", "3");
     }
 
-    private static void AssertStepMatch(string matchExpression, string id)
+    private static void AssertStepMatch(string matchExpression, string id, string[] args = null)
     {
+      if (args == null)
+      {
+        args = [];
+      }
+      var escapedMatchExpression = JsonConvert.ToString(matchExpression);
       var stepCommand = FixtureStepsCommandFactory.Create(
-        @"[""step_matches"",{""name_to_match"":""" + matchExpression + @"""}]"
+        @"[""step_matches"",{""name_to_match"":" + escapedMatchExpression + @"}]"
       );
       var response = stepCommand.Execute();
       response.Succeeded.Should().Be(true);
@@ -73,7 +79,11 @@ namespace StepServer.Test
     [TestMethod]
     public void StepMatchesGivenWithAnArgument()
     {
-      Assert.Fail();
+      AssertStepMatch(
+        "it passes with an argument \"example arg\"",
+        "4",
+        new string[] {"example arg"}
+      );
     }
 
     [TestMethod]
