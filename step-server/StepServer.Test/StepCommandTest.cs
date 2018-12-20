@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
@@ -59,23 +61,34 @@ namespace StepServer.Test
       AssertStepMatch("it fails without arguments", "3");
     }
 
-    private static void AssertStepMatch(string matchExpression, string id, string[] args = null)
+    private static void AssertStepMatch(
+      string matchExpression,
+      string id,
+      string[] args = null
+    )
     {
       if (args == null)
       {
-        args = [];
+        args = new string[] { };
       }
+
       var escapedMatchExpression = JsonConvert.ToString(matchExpression);
       var stepCommand = FixtureStepsCommandFactory.Create(
-        @"[""step_matches"",{""name_to_match"":" + escapedMatchExpression + @"}]"
+        @"[""step_matches"",{""name_to_match"":" +
+          escapedMatchExpression + @"}]"
       );
       var response = stepCommand.Execute();
       response.Succeeded.Should().Be(true);
+
+      var escapedArgs = new List<string>(args).ConvertAll(arg => $"\"{arg}\"");
+      var commaSepArgs = string.Join(",", escapedArgs);
+
       response.Payload.Should().Be(
-        @"[{""id"":""" + id + @""",""args"":[]}]"
+        @"[{""id"":""" + id + @""",""args"":[" + commaSepArgs + "]}]"
       );
       response.ToString().Should().Be(
-        @"[""success"",[{""id"":""" + id + @""",""args"":[]}]]"
+        @"[""success"",[{""id"":""" + id + @""",""args"":[" +
+          commaSepArgs + "]}]]"
       );
     }
 
@@ -92,19 +105,29 @@ namespace StepServer.Test
     [TestMethod]
     public void StepMatchesThenWithAnArgument()
     {
-      Assert.Fail();
+      AssertStepMatch(
+        "it fails with an argument \"the example arg\"",
+        "6",
+        new string[] {"the example arg"}
+      );
     }
 
     [TestMethod]
     public void StepMatchesWhenWithAnArgument()
     {
-      Assert.Fail();
+      AssertStepMatch(
+        "it is pending with an argument \"yes it is\"",
+        "5",
+        new string[] {"yes it is"}
+      );
     }
 
     [TestMethod]
     public void BeginScenario()
     {
-      var stepCommand = CukenessStepsCommandFactory.Create(@"[""begin_scenario""]");
+      var stepCommand = CukenessStepsCommandFactory.Create(
+        @"[""begin_scenario""]"
+      );
       var response = stepCommand.Execute();
       response.Succeeded.Should().Be(true);
       response.Payload.Should().BeNull();
@@ -114,7 +137,9 @@ namespace StepServer.Test
     [TestMethod]
     public void EndScenario()
     {
-      var stepCommand = CukenessStepsCommandFactory.Create(@"[""end_scenario""]");
+      var stepCommand = CukenessStepsCommandFactory.Create(
+        @"[""end_scenario""]"
+      );
       var response = stepCommand.Execute();
       response.Succeeded.Should().Be(true);
       response.Payload.Should().BeNull();
