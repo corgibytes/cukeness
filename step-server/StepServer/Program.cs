@@ -11,6 +11,14 @@ namespace StepServer
     {
         static void Main(string[] args)
         {
+            AppDomain.CurrentDomain.UnhandledException += (sender, exceptionArgs) =>
+            {
+                var ex = exceptionArgs.ExceptionObject as Exception;
+                // TODO: test the exception object type and log it
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+            };
+
             AsyncSocketListener.StartListening();
         }
     }
