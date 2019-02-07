@@ -1,6 +1,8 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using Newtonsoft.Json.Linq;
@@ -40,6 +42,7 @@ namespace StepServer
         }
 
         public static void StartListening() {
+            // TODO: remove hard coded port
             var port = 9666;
             IPEndPoint localEndPoint = new IPEndPoint(IPAddress.Any, port);
 
@@ -96,6 +99,17 @@ namespace StepServer
           Console.WriteLine($"Looking for a match for {nameToMatch}");
         }
 
+        private static string AssemblyDirectory
+        {
+          get
+          {
+            var codeBase = Assembly.GetExecutingAssembly().CodeBase;
+            var uri = new UriBuilder(codeBase);
+            var path = Uri.UnescapeDataString(uri.Path);
+            return Path.GetDirectoryName(path);
+          }
+        }
+
         public static void ReadCallback(IAsyncResult ar) {
             String content = String.Empty;
 
@@ -116,13 +130,15 @@ namespace StepServer
                         $"Data : {content}"
                     );
 
-                    var message = JArray.Parse(content);
-                    var command = message[0].Value<String>();
-                    if (command == "step_matches") {
-                      ProcessStepMatches(message[1].ToString());
-                    }
+                    var stepsAssembly = Assembly.LoadFile(
+                      Path.Combine(AssemblyDirectory, "Cukeness.Specs.dll")
+                    );
+                    var commandFactory = new StepCommandFactory(stepsAssembly);
+                    var command = commandFactory.Create(content);
 
-                    Send(handler, content);
+                    var response = command.Execute();
+
+                    Send(handler, response.Payload);
                 } else {
                     handler.BeginReceive(
                         state.rawBuffer, 0, StateObject.BufferSize, 0,
@@ -135,6 +151,11 @@ namespace StepServer
         public static void Send(Socket handler, String data) {
             byte[] rawData = Encoding.UTF8.GetBytes(data);
 
+            // TODO: Switch to using Environment.NewLine everywhere that \n appears
+            Console.WriteLine(
+              $"Write {data.Length} bytes to socket. " +
+              Environment.NewLine + $"Data : {data}"
+            );
             handler.BeginSend(
                 rawData, 0, rawData.Length, 0,
                 new AsyncCallback(SendCallback), handler
