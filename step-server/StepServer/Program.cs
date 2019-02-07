@@ -36,7 +36,8 @@ namespace StepServer
     }
 
     public class AsyncSocketListener {
-        public static ManualResetEvent allDone = new ManualResetEvent(false);
+        public static ManualResetEvent allDoneListening = new ManualResetEvent(false);
+        public static ManualResetEvent allDoneReceiving = new ManualResetEvent(false);
 
         public AsyncSocketListener() {
         }
@@ -55,7 +56,7 @@ namespace StepServer
                 listener.Listen(100);
 
                 while (true) {
-                    allDone.Reset();
+                    allDoneListening.Reset();
 
                     Console.WriteLine(
                         $@"Waiting for a connection on {
@@ -67,7 +68,7 @@ namespace StepServer
                         listener
                     );
 
-                    allDone.WaitOne();
+                    allDoneListening.WaitOne();
                 }
             } catch (Exception e) {
                 Console.WriteLine(e.ToString());
@@ -78,16 +79,24 @@ namespace StepServer
         }
 
         public static void AcceptCallback(IAsyncResult ar) {
-            allDone.Set();
+            allDoneListening.Set();
 
             Socket listener = (Socket) ar.AsyncState;
             Socket handler = listener.EndAccept(ar);
 
-            StateObject state = new StateObject();
-            state.workSocket = handler;
-            handler.BeginReceive(state.rawBuffer, 0, StateObject.BufferSize, 0,
+            while (true)
+            {
+              allDoneReceiving.Reset();
+
+              StateObject state = new StateObject();
+              state.workSocket = handler;
+              handler.BeginReceive(state.rawBuffer, 0, StateObject.BufferSize,
+                0,
                 new AsyncCallback(ReadCallback), state
-            );
+              );
+
+              allDoneReceiving.WaitOne();
+            }
         }
 
         public static void ProcessStepMatches(String request) {
@@ -111,6 +120,7 @@ namespace StepServer
         }
 
         public static void ReadCallback(IAsyncResult ar) {
+            allDoneReceiving.Set();
             String content = String.Empty;
 
             StateObject state = (StateObject) ar.AsyncState;
@@ -138,7 +148,8 @@ namespace StepServer
 
                     var response = command.Execute();
 
-                    Send(handler, response.Payload);
+                    Send(handler, response.ToString() + "\r\n");
+
                 } else {
                     handler.BeginReceive(
                         state.rawBuffer, 0, StateObject.BufferSize, 0,
@@ -150,6 +161,8 @@ namespace StepServer
 
         public static void Send(Socket handler, String data) {
             byte[] rawData = Encoding.UTF8.GetBytes(data);
+
+            Console.WriteLine(BitConverter.ToString(rawData));
 
             // TODO: Switch to using Environment.NewLine everywhere that \n appears
             Console.WriteLine(
@@ -167,12 +180,10 @@ namespace StepServer
                 Socket handler = (Socket) ar.AsyncState;
 
                 int bytesSent = handler.EndSend(ar);
+
                 Console.WriteLine(
                     $"Sent {bytesSent} bytes to client."
                 );
-
-                handler.Shutdown(SocketShutdown.Both);
-                handler.Close();
             } catch (Exception e) {
                 Console.WriteLine(e.ToString());
             }
